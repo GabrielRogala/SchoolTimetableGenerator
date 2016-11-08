@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STG genetic algorithm", "STG genetic algorithm\STG genetic algorithm.csproj", "{A47F00C4-2FAA-4A3C-9125-C04B27E13EDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STG genetic algorithm Tests", "STG genetic algorithm Tests\STG genetic algorithm Tests.csproj", "{FAA931EB-78FA-4E09-8FC9-3A0D5147B62F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STG website", "STG website\STG website.csproj", "{B7210B2B-64F9-4E94-A6B7-200CCC3BBCEC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STG website.Tests", "STG website.Tests\STG website.Tests.csproj", "{94A4D7BB-AD11-4D2E-9B40-48F61495F4AF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A47F00C4-2FAA-4A3C-9125-C04B27E13EDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A47F00C4-2FAA-4A3C-9125-C04B27E13EDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A47F00C4-2FAA-4A3C-9125-C04B27E13EDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A47F00C4-2FAA-4A3C-9125-C04B27E13EDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAA931EB-78FA-4E09-8FC9-3A0D5147B62F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAA931EB-78FA-4E09-8FC9-3A0D5147B62F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAA931EB-78FA-4E09-8FC9-3A0D5147B62F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAA931EB-78FA-4E09-8FC9-3A0D5147B62F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7210B2B-64F9-4E94-A6B7-200CCC3BBCEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7210B2B-64F9-4E94-A6B7-200CCC3BBCEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7210B2B-64F9-4E94-A6B7-200CCC3BBCEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7210B2B-64F9-4E94-A6B7-200CCC3BBCEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94A4D7BB-AD11-4D2E-9B40-48F61495F4AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94A4D7BB-AD11-4D2E-9B40-48F61495F4AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94A4D7BB-AD11-4D2E-9B40-48F61495F4AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94A4D7BB-AD11-4D2E-9B40-48F61495F4AF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

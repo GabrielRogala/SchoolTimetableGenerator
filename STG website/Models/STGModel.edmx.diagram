@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="586ffbf10f1e46d5bfebd35b09a66039" Name="Diagram1" ZoomLevel="85">
+        <EntityTypeShape EntityType="Model.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetRoles" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetUserClaims" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetUserLogins" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetUserRoles" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Model.AspNetUsers" Width="1.5" PointX="3.5" PointY="5.625" />
+        <AssociationConnector Association="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <EntityTypeShape EntityType="Model.Schools" Width="1.5" PointX="5.25" PointY="4.875" />
+        <AssociationConnector Association="Model.AspNetUsersSchool" />
+        <EntityTypeShape EntityType="Model.Teachers" Width="1.5" PointX="7.25" PointY="0.5" />
+        <AssociationConnector Association="Model.AspNetUsersTeacher" />
+        <EntityTypeShape EntityType="Model.Subjects" Width="1.5" PointX="7.25" PointY="3.375" />
+        <EntityTypeShape EntityType="Model.Groups" Width="1.5" PointX="7.25" PointY="7.25" />
+        <EntityTypeShape EntityType="Model.Lessons" Width="1.5" PointX="9.5" PointY="1.125" />
+        <AssociationConnector Association="Model.SubjectsLessons" />
+        <AssociationConnector Association="Model.TeachersLessons" />
+        <EntityTypeShape EntityType="Model.TeachersSchools" Width="1.5" PointX="5.25" PointY="0.625" />
+        <AssociationConnector Association="Model.TeachersTeachersSchools" />
+        <AssociationConnector Association="Model.SchoolsTeachersSchools" />
+        <AssociationConnector Association="Model.SchoolsGroups" />
+        <AssociationConnector Association="Model.SchoolsSubjects" />
+        <AssociationConnector Association="Model.SchoolsLessons" />
+        <EntityTypeShape EntityType="Model.Rooms" Width="1.5" PointX="11.625" PointY="6.875" />
+        <AssociationConnector Association="Model.SchoolsRooms" />
+        <EntityTypeShape EntityType="Model.RoomType" Width="1.5" PointX="11.625" PointY="3.625" />
+        <AssociationConnector Association="Model.SchoolsRoomType" />
+        <AssociationConnector Association="Model.RoomTypeRooms" />
+        <AssociationConnector Association="Model.RoomTypeLessons" />
+        <EntityTypeShape EntityType="Model.SubGroups" Width="1.5" PointX="9.5" PointY="5.5" />
+        <AssociationConnector Association="Model.GroupsSubGroups" />
+        <AssociationConnector Association="Model.SchoolsSubGroups" />
+        <AssociationConnector Association="Model.SubGroupsLessons" />
+        <EntityTypeShape EntityType="Model.Timetable" Width="1.5" PointX="14.25" PointY="1.25" />
+        <AssociationConnector Association="Model.SchoolsTimetable" />
+        <AssociationConnector Association="Model.RoomsTimetable" />
+        <AssociationConnector Association="Model.GroupsTimetable" />
+        <AssociationConnector Association="Model.TeachersTimetable" />
+        <AssociationConnector Association="Model.LessonsTimetable" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

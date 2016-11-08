@@ -1,0 +1,1396 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="C__MigrationHistory" EntityType="Model.Store.C__MigrationHistory" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AspNetRoles" EntityType="Model.Store.AspNetRoles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Model.Store.AspNetUserClaims" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Model.Store.AspNetUserLogins" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AspNetUserRoles" EntityType="Model.Store.AspNetUserRoles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AspNetUsers" EntityType="Model.Store.AspNetUsers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Schools" EntityType="Model.Store.Schools" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Teachers" EntityType="Model.Store.Teachers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Subjects" EntityType="Model.Store.Subjects" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Groups" EntityType="Model.Store.Groups" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Lessons" EntityType="Model.Store.Lessons" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TeachersSchoolsSet" EntityType="Model.Store.TeachersSchoolsSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Rooms" EntityType="Model.Store.Rooms" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RoomTypes" EntityType="Model.Store.RoomTypes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SubGroups" EntityType="Model.Store.SubGroups" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Timetable" EntityType="Model.Store.Timetable" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Model.Store.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Model.Store.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Model.Store.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUsersSchool" Association="Model.Store.AspNetUsersSchool">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="School" EntitySet="Schools" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUsersTeacher" Association="Model.Store.AspNetUsersTeacher">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Teacher" EntitySet="Teachers" />
+    </AssociationSet>
+    <AssociationSet Name="SubjectsLessons" Association="Model.Store.SubjectsLessons">
+      <End Role="Subjects" EntitySet="Subjects" />
+      <End Role="Lessons" EntitySet="Lessons" />
+    </AssociationSet>
+    <AssociationSet Name="TeachersLessons" Association="Model.Store.TeachersLessons">
+      <End Role="Teachers" EntitySet="Teachers" />
+      <End Role="Lessons" EntitySet="Lessons" />
+    </AssociationSet>
+    <AssociationSet Name="TeachersTeachersSchools" Association="Model.Store.TeachersTeachersSchools">
+      <End Role="Teachers" EntitySet="Teachers" />
+      <End Role="TeachersSchools" EntitySet="TeachersSchoolsSet" />
+    </AssociationSet>
+    <AssociationSet Name="SchoolsTeachersSchools" Association="Model.Store.SchoolsTeachersSchools">
+      <End Role="Schools" EntitySet="Schools" />
+      <End Role="TeachersSchools" EntitySet="TeachersSchoolsSet" />
+    </AssociationSet>
+    <AssociationSet Name="SchoolsGroups" Association="Model.Store.SchoolsGroups">
+      <End Role="Schools" EntitySet="Schools" />
+      <End Role="Groups" EntitySet="Groups" />
+    </AssociationSet>
+    <AssociationSet Name="SchoolsSubjects" Association="Model.Store.SchoolsSubjects">
+      <End Role="Schools" EntitySet="Schools" />
+      <End Role="Subjects" EntitySet="Subjects" />
+    </AssociationSet>
+    <AssociationSet Name="SchoolsLessons" Association="Model.Store.SchoolsLessons">
+      <End Role="Schools" EntitySet="Schools" />
+      <End Role="Lessons" EntitySet="Lessons" />
+    </AssociationSet>
+    <AssociationSet Name="SchoolsRooms" Association="Model.Store.SchoolsRooms">
+      <End Role="Schools" EntitySet="Schools" />
+      <End Role="Rooms" EntitySet="Rooms" />
+    </AssociationSet>
+    <AssociationSet Name="SchoolsRoomType" Association="Model.Store.SchoolsRoomType">
+      <End Role="Schools" EntitySet="Schools" />
+      <End Role="RoomType" EntitySet="RoomTypes" />
+    </AssociationSet>
+    <AssociationSet Name="RoomTypeRooms" Association="Model.Store.RoomTypeRooms">
+      <End Role="RoomType" EntitySet="RoomTypes" />
+      <End Role="Rooms" EntitySet="Rooms" />
+    </AssociationSet>
+    <AssociationSet Name="RoomTypeLessons" Association="Model.Store.RoomTypeLessons">
+      <End Role="RoomType" EntitySet="RoomTypes" />
+      <End Role="Lessons" EntitySet="Lessons" />
+    </AssociationSet>
+    <AssociationSet Name="GroupsSubGroups" Association="Model.Store.GroupsSubGroups">
+      <End Role="Groups" EntitySet="Groups" />
+      <End Role="SubGroups" EntitySet="SubGroups" />
+    </AssociationSet>
+    <AssociationSet Name="SchoolsSubGroups" Association="Model.Store.SchoolsSubGroups">
+      <End Role="Schools" EntitySet="Schools" />
+      <End Role="SubGroups" EntitySet="SubGroups" />
+    </AssociationSet>
+    <AssociationSet Name="SubGroupsLessons" Association="Model.Store.SubGroupsLessons">
+      <End Role="SubGroups" EntitySet="SubGroups" />
+      <End Role="Lessons" EntitySet="Lessons" />
+    </AssociationSet>
+    <AssociationSet Name="SchoolsTimetable" Association="Model.Store.SchoolsTimetable">
+      <End Role="Schools" EntitySet="Schools" />
+      <End Role="Timetable" EntitySet="Timetable" />
+    </AssociationSet>
+    <AssociationSet Name="RoomsTimetable" Association="Model.Store.RoomsTimetable">
+      <End Role="Rooms" EntitySet="Rooms" />
+      <End Role="Timetable" EntitySet="Timetable" />
+    </AssociationSet>
+    <AssociationSet Name="GroupsTimetable" Association="Model.Store.GroupsTimetable">
+      <End Role="Groups" EntitySet="Groups" />
+      <End Role="Timetable" EntitySet="Timetable" />
+    </AssociationSet>
+    <AssociationSet Name="TeachersTimetable" Association="Model.Store.TeachersTimetable">
+      <End Role="Teachers" EntitySet="Teachers" />
+      <End Role="Timetable" EntitySet="Timetable" />
+    </AssociationSet>
+    <AssociationSet Name="LessonsTimetable" Association="Model.Store.LessonsTimetable">
+      <End Role="Lessons" EntitySet="Lessons" />
+      <End Role="Timetable" EntitySet="Timetable" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="ContextKey" Type="nvarchar" Nullable="false" MaxLength="300" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" Nullable="false" MaxLength="32" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="ClaimType" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="ProviderKey" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="RoleId" Type="nvarchar" Nullable="false" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="Email" Type="nvarchar" Nullable="true" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" Nullable="true" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="Schools">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Adress" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AspNetUsersId" Type="nvarchar" Nullable="false" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="Teachers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Lastname" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AspNetUsersId" Type="nvarchar" Nullable="false" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="Subjects">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ShortName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SchoolsId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Groups">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ShortName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Amount" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SchoolsId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Lessons">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubjectsId" Type="int" Nullable="false" />
+    <Property Name="TeachersId" Type="int" Nullable="false" />
+    <Property Name="Schedule" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SchoolsId" Type="int" Nullable="false" />
+    <Property Name="RoomTypeId" Type="int" Nullable="false" />
+    <Property Name="SubGroupsId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TeachersSchoolsSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TeachersId" Type="int" Nullable="false" />
+    <Property Name="SchoolsId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rooms">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Number" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Amount" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SchoolsId" Type="int" Nullable="false" />
+    <Property Name="RoomTypeId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RoomTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SchoolsId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SubGroups">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="GroupsId" Type="int" Nullable="false" />
+    <Property Name="SchoolsId" Type="int" Nullable="false" />
+    <Property Name="Number" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Timetable">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Day" Type="smallint" Nullable="false" />
+    <Property Name="Hour" Type="smallint" Nullable="false" />
+    <Property Name="SchoolsId" Type="int" Nullable="false" />
+    <Property Name="RoomsId" Type="int" Nullable="false" />
+    <Property Name="GroupsId" Type="int" Nullable="false" />
+    <Property Name="TeachersId" Type="int" Nullable="false" />
+    <Property Name="LessonsId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+    <End Role="AspNetRoles" Type="Model.Store.AspNetRoles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Model.Store.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Model.Store.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Model.Store.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Model.Store.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Model.Store.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUsersSchool">
+    <End Role="AspNetUsers" Type="Model.Store.AspNetUsers" Multiplicity="1" />
+    <End Role="School" Type="Model.Store.Schools" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="School">
+        <PropertyRef Name="AspNetUsersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUsersTeacher">
+    <End Role="AspNetUsers" Type="Model.Store.AspNetUsers" Multiplicity="1" />
+    <End Role="Teacher" Type="Model.Store.Teachers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Teacher">
+        <PropertyRef Name="AspNetUsersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SubjectsLessons">
+    <End Role="Subjects" Type="Model.Store.Subjects" Multiplicity="1" />
+    <End Role="Lessons" Type="Model.Store.Lessons" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjects">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Lessons">
+        <PropertyRef Name="SubjectsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TeachersLessons">
+    <End Role="Teachers" Type="Model.Store.Teachers" Multiplicity="1" />
+    <End Role="Lessons" Type="Model.Store.Lessons" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teachers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Lessons">
+        <PropertyRef Name="TeachersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TeachersTeachersSchools">
+    <End Role="Teachers" Type="Model.Store.Teachers" Multiplicity="1" />
+    <End Role="TeachersSchools" Type="Model.Store.TeachersSchoolsSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teachers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TeachersSchools">
+        <PropertyRef Name="TeachersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SchoolsTeachersSchools">
+    <End Role="Schools" Type="Model.Store.Schools" Multiplicity="1" />
+    <End Role="TeachersSchools" Type="Model.Store.TeachersSchoolsSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Schools">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TeachersSchools">
+        <PropertyRef Name="SchoolsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SchoolsGroups">
+    <End Role="Schools" Type="Model.Store.Schools" Multiplicity="1" />
+    <End Role="Groups" Type="Model.Store.Groups" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Schools">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Groups">
+        <PropertyRef Name="SchoolsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SchoolsSubjects">
+    <End Role="Schools" Type="Model.Store.Schools" Multiplicity="1" />
+    <End Role="Subjects" Type="Model.Store.Subjects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Schools">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Subjects">
+        <PropertyRef Name="SchoolsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SchoolsLessons">
+    <End Role="Schools" Type="Model.Store.Schools" Multiplicity="1" />
+    <End Role="Lessons" Type="Model.Store.Lessons" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Schools">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Lessons">
+        <PropertyRef Name="SchoolsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SchoolsRooms">
+    <End Role="Schools" Type="Model.Store.Schools" Multiplicity="1" />
+    <End Role="Rooms" Type="Model.Store.Rooms" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Schools">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rooms">
+        <PropertyRef Name="SchoolsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SchoolsRoomType">
+    <End Role="Schools" Type="Model.Store.Schools" Multiplicity="1" />
+    <End Role="RoomType" Type="Model.Store.RoomTypes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Schools">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RoomType">
+        <PropertyRef Name="SchoolsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RoomTypeRooms">
+    <End Role="RoomType" Type="Model.Store.RoomTypes" Multiplicity="1" />
+    <End Role="Rooms" Type="Model.Store.Rooms" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoomType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rooms">
+        <PropertyRef Name="RoomTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RoomTypeLessons">
+    <End Role="RoomType" Type="Model.Store.RoomTypes" Multiplicity="1" />
+    <End Role="Lessons" Type="Model.Store.Lessons" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoomType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Lessons">
+        <PropertyRef Name="RoomTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GroupsSubGroups">
+    <End Role="Groups" Type="Model.Store.Groups" Multiplicity="1" />
+    <End Role="SubGroups" Type="Model.Store.SubGroups" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Groups">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SubGroups">
+        <PropertyRef Name="GroupsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SchoolsSubGroups">
+    <End Role="Schools" Type="Model.Store.Schools" Multiplicity="1" />
+    <End Role="SubGroups" Type="Model.Store.SubGroups" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Schools">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SubGroups">
+        <PropertyRef Name="SchoolsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SubGroupsLessons">
+    <End Role="SubGroups" Type="Model.Store.SubGroups" Multiplicity="1" />
+    <End Role="Lessons" Type="Model.Store.Lessons" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubGroups">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Lessons">
+        <PropertyRef Name="SubGroupsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SchoolsTimetable">
+    <End Role="Schools" Type="Model.Store.Schools" Multiplicity="1" />
+    <End Role="Timetable" Type="Model.Store.Timetable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Schools">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Timetable">
+        <PropertyRef Name="SchoolsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RoomsTimetable">
+    <End Role="Rooms" Type="Model.Store.Rooms" Multiplicity="1" />
+    <End Role="Timetable" Type="Model.Store.Timetable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rooms">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Timetable">
+        <PropertyRef Name="RoomsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GroupsTimetable">
+    <End Role="Groups" Type="Model.Store.Groups" Multiplicity="1" />
+    <End Role="Timetable" Type="Model.Store.Timetable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Groups">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Timetable">
+        <PropertyRef Name="GroupsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TeachersTimetable">
+    <End Role="Teachers" Type="Model.Store.Teachers" Multiplicity="1" />
+    <End Role="Timetable" Type="Model.Store.Timetable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teachers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Timetable">
+        <PropertyRef Name="TeachersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LessonsTimetable">
+    <End Role="Lessons" Type="Model.Store.Lessons" Multiplicity="1" />
+    <End Role="Timetable" Type="Model.Store.Timetable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lessons">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Timetable">
+        <PropertyRef Name="LessonsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserRoles" Relationship="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" FromRole="AspNetRoles" ToRole="AspNetUserRoles" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RoleId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" FromRole="AspNetUserRoles" ToRole="AspNetRoles" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" />
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <EntitySet Name="AspNetUsers" EntityType="Model.AspNetUsers" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <EntitySet Name="Schools" EntityType="Model.Schools" />
+          <AssociationSet Name="AspNetUsersSchool" Association="Model.AspNetUsersSchool">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="School" EntitySet="Schools" />
+          </AssociationSet>
+          <EntitySet Name="Teachers" EntityType="Model.Teachers" />
+          <AssociationSet Name="AspNetUsersTeacher" Association="Model.AspNetUsersTeacher">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Teacher" EntitySet="Teachers" />
+          </AssociationSet>
+          <EntitySet Name="Subjects" EntityType="Model.Subjects" />
+          <EntitySet Name="Groups" EntityType="Model.Groups" />
+          <EntitySet Name="Lessons" EntityType="Model.Lessons" />
+          <AssociationSet Name="SubjectsLessons" Association="Model.SubjectsLessons">
+            <End Role="Subjects" EntitySet="Subjects" />
+            <End Role="Lessons" EntitySet="Lessons" />
+          </AssociationSet>
+          <AssociationSet Name="TeachersLessons" Association="Model.TeachersLessons">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="Lessons" EntitySet="Lessons" />
+          </AssociationSet>
+          <EntitySet Name="TeachersSchoolsSet" EntityType="Model.TeachersSchools" />
+          <AssociationSet Name="TeachersTeachersSchools" Association="Model.TeachersTeachersSchools">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="TeachersSchools" EntitySet="TeachersSchoolsSet" />
+          </AssociationSet>
+          <AssociationSet Name="SchoolsTeachersSchools" Association="Model.SchoolsTeachersSchools">
+            <End Role="Schools" EntitySet="Schools" />
+            <End Role="TeachersSchools" EntitySet="TeachersSchoolsSet" />
+          </AssociationSet>
+          <AssociationSet Name="SchoolsGroups" Association="Model.SchoolsGroups">
+            <End Role="Schools" EntitySet="Schools" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="SchoolsSubjects" Association="Model.SchoolsSubjects">
+            <End Role="Schools" EntitySet="Schools" />
+            <End Role="Subjects" EntitySet="Subjects" />
+          </AssociationSet>
+          <AssociationSet Name="SchoolsLessons" Association="Model.SchoolsLessons">
+            <End Role="Schools" EntitySet="Schools" />
+            <End Role="Lessons" EntitySet="Lessons" />
+          </AssociationSet>
+          <EntitySet Name="Rooms" EntityType="Model.Rooms" />
+          <AssociationSet Name="SchoolsRooms" Association="Model.SchoolsRooms">
+            <End Role="Schools" EntitySet="Schools" />
+            <End Role="Rooms" EntitySet="Rooms" />
+          </AssociationSet>
+          <EntitySet Name="RoomTypes" EntityType="Model.RoomType" />
+          <AssociationSet Name="SchoolsRoomType" Association="Model.SchoolsRoomType">
+            <End Role="Schools" EntitySet="Schools" />
+            <End Role="RoomType" EntitySet="RoomTypes" />
+          </AssociationSet>
+          <AssociationSet Name="RoomTypeRooms" Association="Model.RoomTypeRooms">
+            <End Role="RoomType" EntitySet="RoomTypes" />
+            <End Role="Rooms" EntitySet="Rooms" />
+          </AssociationSet>
+          <AssociationSet Name="RoomTypeLessons" Association="Model.RoomTypeLessons">
+            <End Role="RoomType" EntitySet="RoomTypes" />
+            <End Role="Lessons" EntitySet="Lessons" />
+          </AssociationSet>
+          <EntitySet Name="SubGroups" EntityType="Model.SubGroups" />
+          <AssociationSet Name="GroupsSubGroups" Association="Model.GroupsSubGroups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="SubGroups" EntitySet="SubGroups" />
+          </AssociationSet>
+          <AssociationSet Name="SchoolsSubGroups" Association="Model.SchoolsSubGroups">
+            <End Role="Schools" EntitySet="Schools" />
+            <End Role="SubGroups" EntitySet="SubGroups" />
+          </AssociationSet>
+          <AssociationSet Name="SubGroupsLessons" Association="Model.SubGroupsLessons">
+            <End Role="SubGroups" EntitySet="SubGroups" />
+            <End Role="Lessons" EntitySet="Lessons" />
+          </AssociationSet>
+          <EntitySet Name="Timetable" EntityType="Model.Timetable" />
+          <AssociationSet Name="SchoolsTimetable" Association="Model.SchoolsTimetable">
+            <End Role="Schools" EntitySet="Schools" />
+            <End Role="Timetable" EntitySet="Timetable" />
+          </AssociationSet>
+          <AssociationSet Name="RoomsTimetable" Association="Model.RoomsTimetable">
+            <End Role="Rooms" EntitySet="Rooms" />
+            <End Role="Timetable" EntitySet="Timetable" />
+          </AssociationSet>
+          <AssociationSet Name="GroupsTimetable" Association="Model.GroupsTimetable">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Timetable" EntitySet="Timetable" />
+          </AssociationSet>
+          <AssociationSet Name="TeachersTimetable" Association="Model.TeachersTimetable">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="Timetable" EntitySet="Timetable" />
+          </AssociationSet>
+          <AssociationSet Name="LessonsTimetable" Association="Model.LessonsTimetable">
+            <End Role="Lessons" EntitySet="Lessons" />
+            <End Role="Timetable" EntitySet="Timetable" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="School" Relationship="Model.AspNetUsersSchool" FromRole="AspNetUsers" ToRole="School" />
+          <NavigationProperty Name="Teacher" Relationship="Model.AspNetUsersTeacher" FromRole="AspNetUsers" ToRole="Teacher" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Type="Model.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.AspNetUserClaims" Role="AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="Model.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.AspNetUserLogins" Role="AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Schools">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="City" Type="String" Nullable="false" />
+          <Property Name="Adress" Type="String" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Model.AspNetUsersSchool" FromRole="School" ToRole="AspNetUsers" />
+          <Property Name="AspNetUsersId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TeachersSchools" Relationship="Model.SchoolsTeachersSchools" FromRole="Schools" ToRole="TeachersSchools" />
+          <NavigationProperty Name="Groups" Relationship="Model.SchoolsGroups" FromRole="Schools" ToRole="Groups" />
+          <NavigationProperty Name="Subjects" Relationship="Model.SchoolsSubjects" FromRole="Schools" ToRole="Subjects" />
+          <NavigationProperty Name="Lessons" Relationship="Model.SchoolsLessons" FromRole="Schools" ToRole="Lessons" />
+          <NavigationProperty Name="Rooms" Relationship="Model.SchoolsRooms" FromRole="Schools" ToRole="Rooms" />
+          <NavigationProperty Name="RoomType" Relationship="Model.SchoolsRoomType" FromRole="Schools" ToRole="RoomType" />
+          <NavigationProperty Name="SubGroups" Relationship="Model.SchoolsSubGroups" FromRole="Schools" ToRole="SubGroups" />
+          <NavigationProperty Name="Timetable" Relationship="Model.SchoolsTimetable" FromRole="Schools" ToRole="Timetable" />
+        </EntityType>
+        <Association Name="AspNetUsersSchool">
+          <End Type="Model.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+          <End Type="Model.Schools" Role="School" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="School">
+              <PropertyRef Name="AspNetUsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Teachers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Lastname" Type="String" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Model.AspNetUsersTeacher" FromRole="Teacher" ToRole="AspNetUsers" />
+          <Property Name="AspNetUsersId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Lessons" Relationship="Model.TeachersLessons" FromRole="Teachers" ToRole="Lessons" />
+          <NavigationProperty Name="TeachersSchools" Relationship="Model.TeachersTeachersSchools" FromRole="Teachers" ToRole="TeachersSchools" />
+          <NavigationProperty Name="Timetable" Relationship="Model.TeachersTimetable" FromRole="Teachers" ToRole="Timetable" />
+        </EntityType>
+        <Association Name="AspNetUsersTeacher">
+          <End Type="Model.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+          <End Type="Model.Teachers" Role="Teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Teacher">
+              <PropertyRef Name="AspNetUsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Subjects">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="ShortName" Type="String" Nullable="false" />
+          <NavigationProperty Name="Lessons" Relationship="Model.SubjectsLessons" FromRole="Subjects" ToRole="Lessons" />
+          <NavigationProperty Name="Schools" Relationship="Model.SchoolsSubjects" FromRole="Subjects" ToRole="Schools" />
+          <Property Name="SchoolsId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Groups">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="ShortName" Type="String" Nullable="false" />
+          <Property Name="Amount" Type="String" Nullable="false" />
+          <NavigationProperty Name="Schools" Relationship="Model.SchoolsGroups" FromRole="Groups" ToRole="Schools" />
+          <Property Name="SchoolsId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SubGroups" Relationship="Model.GroupsSubGroups" FromRole="Groups" ToRole="SubGroups" />
+          <NavigationProperty Name="Timetable" Relationship="Model.GroupsTimetable" FromRole="Groups" ToRole="Timetable" />
+        </EntityType>
+        <EntityType Name="Lessons">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Subjects" Relationship="Model.SubjectsLessons" FromRole="Lessons" ToRole="Subjects" />
+          <Property Name="SubjectsId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Teachers" Relationship="Model.TeachersLessons" FromRole="Lessons" ToRole="Teachers" />
+          <Property Name="TeachersId" Type="Int32" Nullable="false" />
+          <Property Name="Schedule" Type="String" Nullable="false" />
+          <NavigationProperty Name="Schools" Relationship="Model.SchoolsLessons" FromRole="Lessons" ToRole="Schools" />
+          <Property Name="SchoolsId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="RoomType" Relationship="Model.RoomTypeLessons" FromRole="Lessons" ToRole="RoomType" />
+          <Property Name="RoomTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SubGroups" Relationship="Model.SubGroupsLessons" FromRole="Lessons" ToRole="SubGroups" />
+          <Property Name="SubGroupsId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Timetable" Relationship="Model.LessonsTimetable" FromRole="Lessons" ToRole="Timetable" />
+        </EntityType>
+        <Association Name="SubjectsLessons">
+          <End Type="Model.Subjects" Role="Subjects" Multiplicity="1" />
+          <End Type="Model.Lessons" Role="Lessons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjects">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Lessons">
+              <PropertyRef Name="SubjectsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TeachersLessons">
+          <End Type="Model.Teachers" Role="Teachers" Multiplicity="1" />
+          <End Type="Model.Lessons" Role="Lessons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Lessons">
+              <PropertyRef Name="TeachersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TeachersSchools">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Teachers" Relationship="Model.TeachersTeachersSchools" FromRole="TeachersSchools" ToRole="Teachers" />
+          <Property Name="TeachersId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Schools" Relationship="Model.SchoolsTeachersSchools" FromRole="TeachersSchools" ToRole="Schools" />
+          <Property Name="SchoolsId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="TeachersTeachersSchools">
+          <End Type="Model.Teachers" Role="Teachers" Multiplicity="1" />
+          <End Type="Model.TeachersSchools" Role="TeachersSchools" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TeachersSchools">
+              <PropertyRef Name="TeachersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SchoolsTeachersSchools">
+          <End Type="Model.Schools" Role="Schools" Multiplicity="1" />
+          <End Type="Model.TeachersSchools" Role="TeachersSchools" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Schools">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TeachersSchools">
+              <PropertyRef Name="SchoolsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SchoolsGroups">
+          <End Type="Model.Schools" Role="Schools" Multiplicity="1" />
+          <End Type="Model.Groups" Role="Groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Schools">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="SchoolsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SchoolsSubjects">
+          <End Type="Model.Schools" Role="Schools" Multiplicity="1" />
+          <End Type="Model.Subjects" Role="Subjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Schools">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Subjects">
+              <PropertyRef Name="SchoolsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SchoolsLessons">
+          <End Type="Model.Schools" Role="Schools" Multiplicity="1" />
+          <End Type="Model.Lessons" Role="Lessons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Schools">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Lessons">
+              <PropertyRef Name="SchoolsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Rooms">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Number" Type="String" Nullable="false" />
+          <Property Name="Amount" Type="String" Nullable="false" />
+          <NavigationProperty Name="Schools" Relationship="Model.SchoolsRooms" FromRole="Rooms" ToRole="Schools" />
+          <Property Name="SchoolsId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="RoomType" Relationship="Model.RoomTypeRooms" FromRole="Rooms" ToRole="RoomType" />
+          <Property Name="RoomTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Timetable" Relationship="Model.RoomsTimetable" FromRole="Rooms" ToRole="Timetable" />
+        </EntityType>
+        <Association Name="SchoolsRooms">
+          <End Type="Model.Schools" Role="Schools" Multiplicity="1" />
+          <End Type="Model.Rooms" Role="Rooms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Schools">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rooms">
+              <PropertyRef Name="SchoolsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="RoomType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Schools" Relationship="Model.SchoolsRoomType" FromRole="RoomType" ToRole="Schools" />
+          <Property Name="SchoolsId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Rooms" Relationship="Model.RoomTypeRooms" FromRole="RoomType" ToRole="Rooms" />
+          <NavigationProperty Name="Lessons" Relationship="Model.RoomTypeLessons" FromRole="RoomType" ToRole="Lessons" />
+        </EntityType>
+        <Association Name="SchoolsRoomType">
+          <End Type="Model.Schools" Role="Schools" Multiplicity="1" />
+          <End Type="Model.RoomType" Role="RoomType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Schools">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RoomType">
+              <PropertyRef Name="SchoolsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RoomTypeRooms">
+          <End Type="Model.RoomType" Role="RoomType" Multiplicity="1" />
+          <End Type="Model.Rooms" Role="Rooms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rooms">
+              <PropertyRef Name="RoomTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RoomTypeLessons">
+          <End Type="Model.RoomType" Role="RoomType" Multiplicity="1" />
+          <End Type="Model.Lessons" Role="Lessons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Lessons">
+              <PropertyRef Name="RoomTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SubGroups">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Groups" Relationship="Model.GroupsSubGroups" FromRole="SubGroups" ToRole="Groups" />
+          <Property Name="GroupsId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Schools" Relationship="Model.SchoolsSubGroups" FromRole="SubGroups" ToRole="Schools" />
+          <Property Name="SchoolsId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Lessons" Relationship="Model.SubGroupsLessons" FromRole="SubGroups" ToRole="Lessons" />
+          <Property Name="Number" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="GroupsSubGroups">
+          <End Type="Model.Groups" Role="Groups" Multiplicity="1" />
+          <End Type="Model.SubGroups" Role="SubGroups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubGroups">
+              <PropertyRef Name="GroupsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SchoolsSubGroups">
+          <End Type="Model.Schools" Role="Schools" Multiplicity="1" />
+          <End Type="Model.SubGroups" Role="SubGroups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Schools">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubGroups">
+              <PropertyRef Name="SchoolsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SubGroupsLessons">
+          <End Type="Model.SubGroups" Role="SubGroups" Multiplicity="1" />
+          <End Type="Model.Lessons" Role="Lessons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubGroups">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Lessons">
+              <PropertyRef Name="SubGroupsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Timetable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Day" Type="Int16" Nullable="false" />
+          <Property Name="Hour" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Schools" Relationship="Model.SchoolsTimetable" FromRole="Timetable" ToRole="Schools" />
+          <Property Name="SchoolsId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Rooms" Relationship="Model.RoomsTimetable" FromRole="Timetable" ToRole="Rooms" />
+          <Property Name="RoomsId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Groups" Relationship="Model.GroupsTimetable" FromRole="Timetable" ToRole="Groups" />
+          <Property Name="GroupsId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Teachers" Relationship="Model.TeachersTimetable" FromRole="Timetable" ToRole="Teachers" />
+          <Property Name="TeachersId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Lessons" Relationship="Model.LessonsTimetable" FromRole="Timetable" ToRole="Lessons" />
+          <Property Name="LessonsId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="SchoolsTimetable">
+          <End Type="Model.Schools" Role="Schools" Multiplicity="1" />
+          <End Type="Model.Timetable" Role="Timetable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Schools">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Timetable">
+              <PropertyRef Name="SchoolsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RoomsTimetable">
+          <End Type="Model.Rooms" Role="Rooms" Multiplicity="1" />
+          <End Type="Model.Timetable" Role="Timetable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rooms">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Timetable">
+              <PropertyRef Name="RoomsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GroupsTimetable">
+          <End Type="Model.Groups" Role="Groups" Multiplicity="1" />
+          <End Type="Model.Timetable" Role="Timetable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Timetable">
+              <PropertyRef Name="GroupsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TeachersTimetable">
+          <End Type="Model.Teachers" Role="Teachers" Multiplicity="1" />
+          <End Type="Model.Timetable" Role="Timetable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Timetable">
+              <PropertyRef Name="TeachersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LessonsTimetable">
+          <End Type="Model.Lessons" Role="Lessons" Multiplicity="1" />
+          <End Type="Model.Timetable" Role="Timetable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lessons">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Timetable">
+              <PropertyRef Name="LessonsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.C__MigrationHistory)">
+        <MappingFragment StoreEntitySet="C__MigrationHistory">
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.AspNetRoles)">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.AspNetUserClaims)">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.AspNetUserLogins)">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserRoles">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.AspNetUserRoles)">
+        <MappingFragment StoreEntitySet="AspNetUserRoles">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.AspNetUsers)">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Schools">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Schools)">
+        <MappingFragment StoreEntitySet="Schools">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Adress" ColumnName="Adress" />
+          <ScalarProperty Name="AspNetUsersId" ColumnName="AspNetUsersId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Teachers">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Teachers)">
+        <MappingFragment StoreEntitySet="Teachers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+          <ScalarProperty Name="AspNetUsersId" ColumnName="AspNetUsersId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subjects">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Subjects)">
+        <MappingFragment StoreEntitySet="Subjects">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="SchoolsId" ColumnName="SchoolsId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Groups">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Groups)">
+        <MappingFragment StoreEntitySet="Groups">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="SchoolsId" ColumnName="SchoolsId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lessons">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Lessons)">
+        <MappingFragment StoreEntitySet="Lessons">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SubjectsId" ColumnName="SubjectsId" />
+          <ScalarProperty Name="TeachersId" ColumnName="TeachersId" />
+          <ScalarProperty Name="Schedule" ColumnName="Schedule" />
+          <ScalarProperty Name="SchoolsId" ColumnName="SchoolsId" />
+          <ScalarProperty Name="RoomTypeId" ColumnName="RoomTypeId" />
+          <ScalarProperty Name="SubGroupsId" ColumnName="SubGroupsId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeachersSchoolsSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.TeachersSchools)">
+        <MappingFragment StoreEntitySet="TeachersSchoolsSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TeachersId" ColumnName="TeachersId" />
+          <ScalarProperty Name="SchoolsId" ColumnName="SchoolsId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rooms">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Rooms)">
+        <MappingFragment StoreEntitySet="Rooms">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="SchoolsId" ColumnName="SchoolsId" />
+          <ScalarProperty Name="RoomTypeId" ColumnName="RoomTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoomTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.RoomType)">
+        <MappingFragment StoreEntitySet="RoomTypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SchoolsId" ColumnName="SchoolsId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubGroups">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.SubGroups)">
+        <MappingFragment StoreEntitySet="SubGroups">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="GroupsId" ColumnName="GroupsId" />
+          <ScalarProperty Name="SchoolsId" ColumnName="SchoolsId" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Timetable">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Timetable)">
+        <MappingFragment StoreEntitySet="Timetable">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Day" ColumnName="Day" />
+          <ScalarProperty Name="Hour" ColumnName="Hour" />
+          <ScalarProperty Name="SchoolsId" ColumnName="SchoolsId" />
+          <ScalarProperty Name="RoomsId" ColumnName="RoomsId" />
+          <ScalarProperty Name="GroupsId" ColumnName="GroupsId" />
+          <ScalarProperty Name="TeachersId" ColumnName="TeachersId" />
+          <ScalarProperty Name="LessonsId" ColumnName="LessonsId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

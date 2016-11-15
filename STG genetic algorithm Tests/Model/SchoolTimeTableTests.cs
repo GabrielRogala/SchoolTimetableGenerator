@@ -58,65 +58,67 @@ namespace STG_genetic_algorithm_Tests.Model
             {
                 int tI = 0;
                 int sI = 0;
+                int amount = 0;
                 //max = 45
                 //----------pol----------
-                tI = 0; sI = 0;
-                lessons.Add(new Lesson(teachers[tI], g, subjects[sI]));
-                lessons.Add(new Lesson(teachers[tI], g, subjects[sI]));
-                lessons.Add(new Lesson(teachers[tI], g, subjects[sI]));
-                lessons.Add(new Lesson(teachers[tI], g, subjects[sI]));
-                lessons.Add(new Lesson(teachers[tI], g, subjects[sI]));
+                tI = 0; sI = 0; amount = 5;
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI],amount));
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
                 //----------ang----------
-                tI = 1; sI = 1;
-                lessons.Add(new Lesson(teachers[tI], g, subjects[sI]));
-                lessons.Add(new Lesson(teachers[tI], g, subjects[sI]));
-                lessons.Add(new Lesson(teachers[tI], g, subjects[sI]));
-                lessons.Add(new Lesson(teachers[tI], g, subjects[sI]));
+                tI = 1; sI = 1; amount = 4;
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
                 //----------mat----------
-                tI = 2; sI = 2;
-                lessons.Add(new Lesson(teachers[tI], g, subjects[sI]));
-                lessons.Add(new Lesson(teachers[tI], g, subjects[sI]));
-                lessons.Add(new Lesson(teachers[tI], g, subjects[sI]));
-                lessons.Add(new Lesson(teachers[tI], g, subjects[sI]));
-                lessons.Add(new Lesson(teachers[tI], g, subjects[sI]));
+                tI = 2; sI = 2; amount = 5;
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
                 //----------his----------
-                tI = 3; sI = 3;
-                lessons.Add(new Lesson(teachers[tI], g, subjects[sI]));
+                tI = 3; sI = 3; amount = 1;
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
                 //----------wos----------
-                tI = 3; sI = 4;
-                lessons.Add(new Lesson(teachers[tI], g, subjects[sI]));
-                lessons.Add(new Lesson(teachers[tI], g, subjects[sI]));
+                tI = 3; sI = 4; amount = 2;
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
                 //----------fiz----------
-                tI = 5; sI = 5;
-                lessons.Add(new Lesson(teachers[tI], g, subjects[sI]));
-                lessons.Add(new Lesson(teachers[tI], g, subjects[sI]));
+                tI = 5; sI = 5; amount = 2;
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
                 //----------bio----------
-                tI = 3; sI = 6;
-                lessons.Add(new Lesson(teachers[tI], g, subjects[sI]));
+                tI = 3; sI = 6; amount = 1;
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
                 //----------geo----------
-                tI = 3; sI = 7;
-                lessons.Add(new Lesson(teachers[tI], g, subjects[sI]));
-                lessons.Add(new Lesson(teachers[tI], g, subjects[sI]));
+                tI = 3; sI = 7; amount = 2;
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
                 //----------w-f----------
-                tI = 4; sI = 8;
-                lessons.Add(new Lesson(teachers[tI], g, subjects[sI]));
-                lessons.Add(new Lesson(teachers[tI], g, subjects[sI]));
-                lessons.Add(new Lesson(teachers[tI], g, subjects[sI]));
+                tI = 4; sI = 8; amount = 3;
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
                 //----------rel----------
-                tI = 5; sI = 9;
-                lessons.Add(new Lesson(teachers[tI], g, subjects[sI]));
-                lessons.Add(new Lesson(teachers[tI], g, subjects[sI]));
+                tI = 5; sI = 9; amount = 3;
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
                 //----------inf----------
-                tI = 4; sI = 10;
-                lessons.Add(new Lesson(teachers[tI], g, subjects[sI]));
-                lessons.Add(new Lesson(teachers[tI], g, subjects[sI]));
+                tI = 4; sI = 10; amount = 2;
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
                 //----------pro----------
-                tI = 6; sI = 11;
-                lessons.Add(new Lesson(teachers[tI], g, subjects[sI]));
-                lessons.Add(new Lesson(teachers[tI], g, subjects[sI]));
-                lessons.Add(new Lesson(teachers[tI], g, subjects[sI]));
-                lessons.Add(new Lesson(teachers[tI], g, subjects[sI]));
-                lessons.Add(new Lesson(teachers[tI], g, subjects[sI]));
+                tI = 6; sI = 11; amount = 5;
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
             }
 
             SchoolTimeTable stt = new SchoolTimeTable(lessons, teachers, groups);
@@ -222,8 +224,12 @@ namespace STG_genetic_algorithm_Tests.Model
             List<int> indexs = new List<int>();
             indexs.Add(0);
             indexs = stt.findDifferentSubjectTheSameGroup(indexs);
-
-            Assert.IsTrue((indexs.Count>1),"not found more then one different subject the same group");
+            if (ConstVariable.NUMBER_OF_LESSONS_TO_POSITIONING > 1)
+            {
+                Assert.IsTrue((indexs.Count > 1), "not found more then one different subject the same group");
+            } else {
+                Assert.IsTrue(indexs.Count > 0, "not found any different subject");
+            }
         }
     }
 }

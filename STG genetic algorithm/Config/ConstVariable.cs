@@ -11,5 +11,7 @@ namespace STG_genetic_algorithm.Config
         public const int NUMBER_OF_DAYS = 5;
         public const int NUMBER_OF_SLOTS_IN_DAY = 9;
         public const int NUMBER_OF_LESSONS_TO_POSITIONING = 5;
+        public const int BOTTOM_BORDER_OF_BEST_SLOTS = 0;
+        public const int TOP_BORDER_OF_BEST_SLOTS = 7;
     }
 }

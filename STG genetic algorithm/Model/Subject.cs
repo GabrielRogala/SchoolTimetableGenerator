@@ -37,6 +37,5 @@ namespace STG_genetic_algorithm.Model
         public String getName() {
             return name;
         }
-        
     }
 }

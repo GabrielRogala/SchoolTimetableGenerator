@@ -71,7 +71,7 @@ namespace STG_genetic_algorithm.Model
             Console.Write("H |      ");
             foreach (Day d in days)
             {
-                Console.Write(d.getName() + "           :      ");
+                Console.Write(d.getName() + "               \t:      ");
             }
             Console.WriteLine("");
             Console.WriteLine("---------------------------------------------------");
@@ -82,11 +82,13 @@ namespace STG_genetic_algorithm.Model
                 {
                     if (d.getSlots()[i].getLessons().Count > 0)
                     {
-                        Console.Write(" " + d.getSlots()[i].getLesson(0).ToString() + " ");
+                        foreach (Lesson lesson in d.getSlots()[i].getLessons()) {
+                            Console.Write(" " + lesson.ToString() + "\t");
+                        }
                     }
                     else
                     {
-                        Console.Write(" -----/-----/-------- ");
+                        Console.Write(" -----/-----/-------------\t");
                     }
                     Console.Write("|");
 
@@ -133,20 +135,28 @@ namespace STG_genetic_algorithm.Model
 
         public List<TimeSlot> getFreeTimeSlot()
         {
+            return getFreeTimeSlot(1);
+        }
+
+        public List<TimeSlot> getFreeTimeSlot(int size)
+        {
             List<TimeSlot> freeSlot = new List<TimeSlot>();
-            int d=0 , h=0;
-            foreach ( Day day in days)
+
+            for (int d = 0; d < ConstVariable.NUMBER_OF_DAYS; ++d)
             {
-                h = 0;
-                foreach (Slot slot in day.getSlots())
+                for (int h = 0; h < ConstVariable.NUMBER_OF_SLOTS_IN_DAY-size; ++h)
                 {
-                    if (slot.isEmpty())
+                    bool result = true;
+
+                    for (int i=0;i<size;++i) {
+                        result = result && isEmpty(d, h + i);
+                    }
+
+                    if (result)
                     {
                         freeSlot.Add(new TimeSlot(d, h));
                     }
-                    h++;
                 }
-                d++;
             }
 
             return freeSlot;

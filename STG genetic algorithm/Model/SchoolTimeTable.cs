@@ -61,7 +61,7 @@ namespace STG_genetic_algorithm.Model
             List<int> indexs = new List<int>();
             List<Lesson> positionedLessons = new List<Lesson>();
 
-            lessons.Sort(new Comparison<Lesson>(lessonComparator));
+            sortLessonList(lessons);
 
             while (lessons.Count > 0) {
                 indexs.Add(lessons.Count - 1);
@@ -85,10 +85,57 @@ namespace STG_genetic_algorithm.Model
 
         public int BFSComparator(FreeSlotsToLesson o1, FreeSlotsToLesson o2)
         {
-            return o1.size.CompareTo(o2.size);
+            if (o1.lesson.getSize() > o2.lesson.getSize())
+            {
+                return -1;
+            }
+            else if (o1.lesson.getSize() < o2.lesson.getSize()) {
+                return 1;
+            }
+            else
+            {
+                return o1.size.CompareTo(o2.size);
+            }
         }
 
         public int lessonComparator(Lesson l1, Lesson l2) {
+            return sizeLessonComparator(l1,l2);
+        }
+
+        public int sizeLessonComparator(Lesson l1, Lesson l2)
+        {
+            if (l1.getSize() > l2.getSize())
+            {
+                return 1;
+            }
+            else if (l1.getSize() < l2.getSize())
+            {
+                return -1;
+            }
+            else
+            {
+                return amountLessonComparator(l1, l2);
+            }
+        }
+
+        public int typeLessonComparator(Lesson l1, Lesson l2)
+        {
+            if ((int)l1.getSubject().getSubjectType() < (int)l2.getSubject().getSubjectType())
+            {
+                return 1;
+            }
+            else if ((int)l1.getSubject().getSubjectType() > (int)l2.getSubject().getSubjectType())
+            {
+                return -1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        public int amountLessonComparator(Lesson l1, Lesson l2)
+        {
             if (l1.getAmount() > l2.getAmount())
             {
                 return 1;
@@ -96,8 +143,10 @@ namespace STG_genetic_algorithm.Model
             else if (l1.getAmount() < l2.getAmount())
             {
                 return -1;
-            } else {
-                return 0;
+            }
+            else
+            {
+                return typeLessonComparator(l1, l2);
             }
         }
 
@@ -105,8 +154,8 @@ namespace STG_genetic_algorithm.Model
             //-----------------------------------------
         }
 
-        public List<Lesson> sortLessonList(List<Lesson> lessons) {
-            return lessons;
+        public void sortLessonList(List<Lesson> lessons) {
+            lessons.Sort(new Comparison<Lesson>(lessonComparator));
         }
 
         public Boolean removeLessonsAndFindNewPosition(Lesson lesson) {
@@ -136,9 +185,14 @@ namespace STG_genetic_algorithm.Model
                 w "second" szukamy lekcji mozliwych dozamiany w slotach  planu "first"
                 */
 
-                List<TimeSlot> firstSlots = firstTT.getFreeTimeSlot();
-                List<TimeSlot> secondSlots = secondTT.getFreeTimeSlot();
-
+                List<TimeSlot> firstSlots = firstTT.getFreeTimeSlot(lesson.getSize());
+                List<TimeSlot> secondSlots = secondTT.getFreeTimeSlot(lesson.getSize());
+                /**
+                 * do poprawienia
+                 * dopisac uwzglednianie wiekszych lekcji
+                 * zwalnianie slotow przy zamianie
+                 * nie zmieniac wiekszych slotow
+                 */
                 while (firstSlots.Count > 0) {
                     int slotsIndex = rand.Next(0, firstSlots.Count);
                     TimeSlot timeSlotToClear = firstSlots[slotsIndex];
@@ -213,24 +267,24 @@ namespace STG_genetic_algorithm.Model
             if (positionedLessons.Count > 0)
             {
                 group = positionedLessons[0].getGroup();
-                groupSlots = group.getTimeTable().getFreeTimeSlot();
 
                 foreach (Lesson lesson in positionedLessons)
                 {
-                    teacherSlots = lesson.getTeacher().getTimeTable().getFreeTimeSlot();
+                    groupSlots = group.getTimeTable().getFreeTimeSlot(lesson.getSize());
+                    teacherSlots = lesson.getTeacher().getTimeTable().getFreeTimeSlot(lesson.getSize());
                     theSameSlots = getTheSameSlots(groupSlots, teacherSlots);
                     freeSlotsToLesson.Add(new FreeSlotsToLesson(theSameSlots, lesson));
 
                     foreach (TimeSlot ts in theSameSlots) {
                         currentTimeTable.addLesson(lesson, ts.day, ts.hour);
-                        if (freeSlots.Contains(ts)) {
+                        if (!freeSlots.Contains(ts)) {
                             freeSlots.Add(ts);
                         }
                     }
                 }
 
                 freeSlotsToLesson.Sort(new Comparison<FreeSlotsToLesson>(BFSComparator));
-                
+
                 foreach (FreeSlotsToLesson fstl in freeSlotsToLesson) {
                     Console.WriteLine(fstl.ToString());
                 }
@@ -259,34 +313,39 @@ namespace STG_genetic_algorithm.Model
                             }
                         }
 
-                        TimeSlot tmpSlot = getBestTimeSlot(fstl.slots);
-
-                        if (fstl.lesson.getGroup().getTimeTable().getDays()[tmpSlot.day].getSlots()[tmpSlot.hour].isEmpty())
+                        TimeSlot bestSlot = getBestTimeSlot(fstl.slots);
+                        for (int i = 0; i < fstl.lesson.getSize(); ++i)
                         {
-                            fstl.lesson.getGroup().getTimeTable().addLesson(fstl.lesson, tmpSlot.day, tmpSlot.hour);
-                            fstl.lesson.getTeacher().getTimeTable().addLesson(fstl.lesson, tmpSlot.day, tmpSlot.hour);
-                        } else {
-                            Console.WriteLine("ERROR!!!!!!!!!!!!!!!!");
+                            if (fstl.lesson.getGroup().getTimeTable().getDays()[bestSlot.day].getSlots()[bestSlot.hour+i].isEmpty())
+                            {
+                                fstl.lesson.addTimeSlot(new TimeSlot(bestSlot.day, bestSlot.hour +i));
+                                fstl.lesson.getGroup().getTimeTable().addLesson(fstl.lesson, bestSlot.day, bestSlot.hour+i);
+                                fstl.lesson.getTeacher().getTimeTable().addLesson(fstl.lesson, bestSlot.day, bestSlot.hour+i);
+                            } else {
+                                Console.WriteLine("ERROR!!!!!!!!!!!!!!!!");
+                            }
                         }
                         
-                        
                         foreach (FreeSlotsToLesson tmp in freeSlotsToLesson) {
-                           // Console.WriteLine("check " + tmpSlot.ToString());
-                            if (tmp.slots.Contains(tmpSlot))
+                            // Console.WriteLine("check " + tmpSlot.ToString());
+
+                            for (int i = 0; i < fstl.lesson.getSize(); ++i)
                             {
-                                int timeSlotIndexToRemove = tmp.slots.IndexOf(tmpSlot);
-                                TimeSlot tsToRemove = tmp.slots[timeSlotIndexToRemove];
-                                tmp.slots.Remove(tsToRemove);
-                             //   Console.WriteLine("remove");
-                            }
-                            else {
-                                //Console.WriteLine("not found "+ tmpSlot.ToString());
+                                TimeSlot tmpSlot = new TimeSlot(bestSlot.day, bestSlot.hour + i);
+
+                                if (tmp.slots.Contains(tmpSlot)) {
+                                    int timeSlotIndexToRemove = tmp.slots.IndexOf(tmpSlot);
+                                    TimeSlot tsToRemove = tmp.slots[timeSlotIndexToRemove];
+                                    tmp.slots.Remove(tsToRemove);
+                                }
                             }
                         }
                         
                     }
                     else {
-                        Console.WriteLine("ERROR! \t" + fstl.lesson.ToString() + "have not free slots");
+                        //if (!removeLessonsAndFindNewPosition(fstl.lesson))
+                            Console.WriteLine("ERROR! \t" + fstl.lesson.ToString() + "have not free slots");
+                        
                     }
                 }
 

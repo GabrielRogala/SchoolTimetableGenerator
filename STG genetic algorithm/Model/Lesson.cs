@@ -12,23 +12,33 @@ namespace STG_genetic_algorithm.Model
         private Group group;
         private Subject subject;
         private int amount;
+        private int size;
+        private List<TimeSlot> timeSlots;
 
         public Lesson(Teacher t, Group g, Subject s)
         {
             teacher = t;
             group = g;
             subject = s;
-            amount = 0;
+            amount = 1;
+            size = 1;
+            timeSlots = new List<TimeSlot>();
         }
 
         public Lesson(Teacher t, Group g, Subject s, int amount) :this(t,g,s)
         {
             this.amount = amount;
+            this.size = 1;
+        }
+
+        public Lesson(Teacher t, Group g, Subject s, int amount, int size) : this(t, g, s, amount)
+        {
+            this.size = size;
         }
 
         public string ToString()
         {
-            return group.ToString() + "/" + teacher.ToString() + "/" + subject.ToString()+ "["+amount+"]";
+            return group.ToString() + "/" + teacher.ToString() + "/" + subject.ToString()+ "["+size+":"+amount+"]";
         }
 
         public Boolean Equals(Lesson lesson)
@@ -54,6 +64,9 @@ namespace STG_genetic_algorithm.Model
             return !this.subject.Equals(lesson.getSubject());
         }
 
+        public int getSize() {
+            return size;
+        }
 
         public void increaseAmount()
         {
@@ -80,6 +93,22 @@ namespace STG_genetic_algorithm.Model
         public int getAmount()
         {
             return amount;
+        }
+
+        public void setTimeSlots(List<TimeSlot> list) {
+            this.timeSlots = list;
+        }
+
+        public void addTimeSlot(TimeSlot slot) {
+            timeSlots.Add(slot);
+        }
+
+        public void clearTimeSlots() {
+            timeSlots.Clear();
+        }
+
+        public void removeTimeSlot(TimeSlot slot) {
+            timeSlots.Remove(slot);
         }
     }
 }

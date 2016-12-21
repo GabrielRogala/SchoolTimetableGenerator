@@ -162,6 +162,46 @@ namespace STG_genetic_algorithm.Model
             return freeSlot;
         }
 
+        public List<TimeSlot> getLessonsTimeSlot()
+        {
+            List<TimeSlot> freeSlot = new List<TimeSlot>();
+
+            for (int d = 0; d < ConstVariable.NUMBER_OF_DAYS; ++d)
+            {
+                for (int h = 0; h < ConstVariable.NUMBER_OF_SLOTS_IN_DAY; ++h)
+                {
+                    if (!isEmpty(d, h))
+                    {
+                        freeSlot.Add(new TimeSlot(d, h));
+                    }
+                }
+            }
+
+            return freeSlot;
+        }
+
+        public List<Lesson> getLessons()
+        {
+            List<Lesson> lessons = new List<Lesson>();
+
+            for (int d = 0; d < ConstVariable.NUMBER_OF_DAYS; ++d)
+            {
+                for (int h = 0; h < ConstVariable.NUMBER_OF_SLOTS_IN_DAY; ++h)
+                {
+                    if (!isEmpty(d, h))
+                    {
+                        lessons.AddRange(getLesson(d,h));
+                    }
+                }
+            }
+
+            return lessons;
+        }
+
+        public List<Lesson> getLesson(int d, int h) {
+            return days[d].getSlots()[h].getLessons();
+        }
+
         public int fitness()
         {
             int value = 0;

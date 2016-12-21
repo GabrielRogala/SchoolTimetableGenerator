@@ -15,12 +15,14 @@ namespace STG_genetic_algorithm.Model
         private List<TimeTable> groupTimeTables;
         private List<TimeTable> teacherTimeTables;
         public List<Lesson> lessons;
+        private int aountOfLessons;
 
         public SchoolTimeTable()
         {
             groupTimeTables = new List<TimeTable>();
             teacherTimeTables = new List<TimeTable>();
             lessons = new List<Lesson>();
+            aountOfLessons = 0;
         }
 
         public SchoolTimeTable(List<Lesson> lessons, List<Teacher> teachers, List<Group> groups) : this()
@@ -28,6 +30,7 @@ namespace STG_genetic_algorithm.Model
             addLessons(lessons);
             generateTeacherTimeTables(teachers);
             generateGroupTimeTables(groups);
+            aountOfLessons = lessons.Count();
         }
 
         public void addLessons(List<Lesson> lessons) {
@@ -150,8 +153,85 @@ namespace STG_genetic_algorithm.Model
             }
         }
 
-        public void mutate() {
-            //-----------------------------------------
+        public void mutate()
+        {
+
+            //var fitnessOfTimaTable = new Dictionary<TimeTable, int>();
+
+            //foreach (TimeTable tt in groupTimeTables)
+            //{
+            //    fitnessOfTimaTable[tt] = tt.fitness();
+            //}
+
+            //TimeTable timeTableToMutate = groupTimeTables[0];
+
+            //foreach (TimeTable tt in groupTimeTables)
+            //{
+            //    if (fitnessOfTimaTable[tt] > fitnessOfTimaTable[timeTableToMutate])
+            //    {
+            //        timeTableToMutate = tt;
+            //    }
+            //}
+
+            //List<TimeSlot> timeSlots = new List<TimeSlot>();
+
+            //for (int d = 0; d < ConstVariable.NUMBER_OF_DAYS; d++)
+            //{
+            //    for (int h = 0; h < ConstVariable.NUMBER_OF_SLOTS_IN_DAY; h++)
+            //    {
+            //        if (!timeTableToMutate.isEmpty(d,h)) {
+            //            timeSlots.Add(new TimeSlot(d, h));
+            //        }
+            //    }
+            //}
+
+            //double sizeOfTimeSlots = timeSlots.Count();
+            //int amoutToChange = (int)( sizeOfTimeSlots * ConstVariable.SUBJECT_PERCENT_TO_MUTATE);
+
+            //List<Lesson> lessonsToChange = new List<Lesson>();
+
+            //for (int i = 0; i < amoutToChange; i++) {
+            //    TimeSlot tmp_slot = timeSlots[new Random().Next((int)sizeOfTimeSlots - 1)];
+            //    timeSlots.Remove(tmp_slot);
+            //    lessonsToChange.Add(timeTableToMutate.getDays()[tmp_slot.day].getSlots()[tmp_slot.hour].getLesson(0));
+            //}
+
+            //foreach (Lesson l in lessonsToChange) {
+            //    Console.WriteLine(l.ToString());
+            //}
+
+
+
+            List<Lesson> lessonsToChange = new List<Lesson>();
+
+            foreach (TimeTable tt in groupTimeTables) {
+            
+                List<TimeSlot> tmpTimeSlots = tt.getLessonsTimeSlot();
+
+                int amoutToChange = (int)( tmpTimeSlots.Count() * ConstVariable.SUBJECT_PERCENT_TO_MUTATE);
+
+                for (int i = 0; i < amoutToChange; i++) {
+                    TimeSlot tmp_slot = tmpTimeSlots[new Random().Next(tmpTimeSlots.Count() - 1)];
+                    if (tt.getLesson(tmp_slot.day, tmp_slot.hour).Count == 1)
+                    {
+                        Lesson tmp_lesson = tt.getLesson(tmp_slot.day, tmp_slot.hour)[0];
+
+                        lessonsToChange.Add(tmp_lesson);
+                        tmpTimeSlots.Remove(tmp_slot);
+
+                        tt.removeLesson(tmp_lesson, tmp_slot.day, tmp_slot.hour);
+                        tmp_lesson.getTeacher().getTimeTable().removeLesson(tmp_lesson, tmp_slot.day, tmp_slot.hour);
+
+                    } else {
+                        tmpTimeSlots.Remove(tmp_slot);
+                        --i;
+                    }
+                }
+            }
+
+            lessons = lessonsToChange;
+
+            generateSchoolTimeTable();
         }
 
         public void sortLessonList(List<Lesson> lessons) {
@@ -376,6 +456,7 @@ namespace STG_genetic_algorithm.Model
         }
 
         public void timeTableCheckSume() {
+
             Boolean result = true;
             foreach (TimeTable tt in groupTimeTables)
             {

@@ -443,5 +443,68 @@ namespace STG_genetic_algorithm_Tests.Model
                 Assert.IsTrue(indexs.Count > 0, "not found any different subject");
             }
         }
+
+        [TestMethod]
+        public void TestCrossing()
+        {
+            List<Lesson> lessons = new List<Lesson>();
+            List<Teacher> teachers = new List<Teacher>();
+            List<Group> groups = new List<Group>();
+            List<Subject> subjects = new List<Subject>();
+
+            // Console.WriteLine("create 7 teachers");
+            for (int j = 0; j < 2; j++)
+            {
+                teachers.Add(new Teacher(j, "t" + j));
+            }
+            //Console.WriteLine("create 6 groups");
+            for (int j = 0; j < 6; j++)
+            {
+                groups.Add(new Group(j, "g" + j));
+            }
+            //Console.WriteLine("create 10 subject");
+            int i = 0;
+            subjects.Add(new Subject(i++, "pol", SubjectType.HUM));
+            subjects.Add(new Subject(i++, "mat", SubjectType.SCI));
+
+
+            Console.WriteLine("create list of lesson");
+            foreach (Group g in groups)
+            {
+                int tI = 0;
+                int sI = 0;
+                int amount = 0;
+                //max = 45
+                //----------pol----------
+                tI = 0; sI = 0; amount = 5;
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount, 2));
+
+                tI = 1; sI = 1; amount = 6;
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
+                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
+
+            }
+
+            SchoolTimeTable stt1 = new SchoolTimeTable(lessons, teachers, groups);
+            stt1.generateSchoolTimeTable();
+            stt1.printTimeTable();
+
+            SchoolTimeTable stt2 = new SchoolTimeTable(lessons, teachers, groups);
+            stt2.generateSchoolTimeTable();
+            stt2.printTimeTable();
+
+            SchoolTimeTable stt3 = new SchoolTimeTable(lessons, teachers, groups);
+            stt3.crossSchoolTimeTables(stt1, stt2);
+            stt3.printSimpleTimeTable();
+
+        }
+
     }
 }

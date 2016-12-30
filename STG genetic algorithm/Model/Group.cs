@@ -8,9 +8,9 @@ namespace STG_genetic_algorithm.Model
 {
     public class Group
     {
-        private String name;
-        private int id;
-        private TimeTable timeTable;
+        public String name;
+        public int id;
+        public TimeTable timeTable;
 
         public Group(int id, String name)
         {
@@ -31,6 +31,11 @@ namespace STG_genetic_algorithm.Model
         public string ToString()
         {
             return id + ":" + name;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return this.id.Equals(((Group)obj).id);
         }
     }
 }

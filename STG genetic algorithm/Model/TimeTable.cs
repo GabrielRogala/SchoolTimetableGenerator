@@ -28,6 +28,41 @@ namespace STG_genetic_algorithm.Model
             this.group = gr;
         }
 
+        public bool Equals(TimeTable obj)
+        {
+            if (group != null) {
+                return obj.group.Equals(this.group);
+            } else if (teacher != null) {
+                return obj.teacher.Equals(this.teacher);
+            } else {
+                return base.Equals(obj);
+            }
+        }
+
+        public bool Equals(Group obj)
+        {
+            if (group != null)
+            {
+                return obj.Equals(this.group);
+            }
+            else
+            {
+                return base.Equals(obj);
+            }
+        }
+
+        public bool Equals(Teacher obj)
+        {
+            if (teacher != null)
+            {
+                return obj.Equals(this.teacher);
+            }
+            else
+            {
+                return base.Equals(obj);
+            }
+        }
+
         public TimeTable(Teacher te) : this()
         {
             te.setTimeTable(this);

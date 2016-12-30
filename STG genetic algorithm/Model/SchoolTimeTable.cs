@@ -16,6 +16,7 @@ namespace STG_genetic_algorithm.Model
         private List<TimeTable> teacherTimeTables;
         public List<Lesson> lessons;
         private int aountOfLessons;
+        private static Random rand = new Random();
 
         public SchoolTimeTable()
         {
@@ -191,7 +192,7 @@ namespace STG_genetic_algorithm.Model
             //List<Lesson> lessonsToChange = new List<Lesson>();
 
             //for (int i = 0; i < amoutToChange; i++) {
-            //    TimeSlot tmp_slot = timeSlots[new Random().Next((int)sizeOfTimeSlots - 1)];
+            //    TimeSlot tmp_slot = timeSlots[rand.Next((int)sizeOfTimeSlots - 1)];
             //    timeSlots.Remove(tmp_slot);
             //    lessonsToChange.Add(timeTableToMutate.getDays()[tmp_slot.day].getSlots()[tmp_slot.hour].getLesson(0));
             //}
@@ -211,7 +212,7 @@ namespace STG_genetic_algorithm.Model
                 int amoutToChange = (int)( tmpTimeSlots.Count() * ConstVariable.SUBJECT_PERCENT_TO_MUTATE);
 
                 for (int i = 0; i < amoutToChange; i++) {
-                    TimeSlot tmp_slot = tmpTimeSlots[new Random().Next(tmpTimeSlots.Count() - 1)];
+                    TimeSlot tmp_slot = tmpTimeSlots[rand.Next(tmpTimeSlots.Count() - 1)];
                     if (tt.getLesson(tmp_slot.day, tmp_slot.hour).Count == 1)
                     {
                         Lesson tmp_lesson = tt.getLesson(tmp_slot.day, tmp_slot.hour)[0];
@@ -241,7 +242,7 @@ namespace STG_genetic_algorithm.Model
         public Boolean removeLessonsAndFindNewPosition(Lesson lesson) {
             Boolean result = true;
             Boolean isGroupHaveMoreSlots = true;
-            Random rand = new Random();
+            
 
             TimeTable groupTT = lesson.getGroup().getTimeTable();
             TimeTable teacherTT = lesson.getTeacher().getTimeTable();
@@ -335,7 +336,7 @@ namespace STG_genetic_algorithm.Model
 
         public void findAndSetBestPositionToLessons(List<Lesson> positionedLessons)
         {
-            Random rand = new Random();
+            
             TimeTable currentTimeTable = new TimeTable();
             List<TimeSlot> freeSlots = new List<TimeSlot>();
             List<TimeSlot> groupSlots;
@@ -449,9 +450,9 @@ namespace STG_genetic_algorithm.Model
             }
 
             if (bestTimeSlots.Count > 0) {
-                return bestTimeSlots[new Random().Next(0, bestTimeSlots.Count - 1)];
+                return bestTimeSlots[rand.Next(0, bestTimeSlots.Count - 1)];
             } else{
-                return worstTimeSlots[new Random().Next(0, worstTimeSlots.Count - 1)];
+                return worstTimeSlots[rand.Next(0, worstTimeSlots.Count - 1)];
             }
         }
 
@@ -613,6 +614,129 @@ namespace STG_genetic_algorithm.Model
             {
                 tt.printTimeTable();
             }
+        }
+
+        public void crossSchoolTimeTables(SchoolTimeTable stt1, SchoolTimeTable stt2) {
+                        
+            foreach (TimeTable tt1 in stt1.groupTimeTables)
+            {
+                TimeTable tt2 = null;
+                
+                foreach (TimeTable tt2_tmp in stt2.groupTimeTables) {
+                    if (tt1.group.Equals(tt2_tmp.group)) {
+                        tt2 = tt2_tmp;
+                        break;
+                    }
+                }
+                
+                if (tt2 != null)
+                {
+                    tt1.printTimeTable();
+                    tt2.printTimeTable();
+
+                    List<TimeSlot> slots = getTheSameTimeSlotInTheSameLesson(tt1, tt2);
+
+                    foreach (TimeSlot slot in slots) {
+                        Lesson lesson = tt1.getLesson(slot.day,slot.hour)[0];
+
+                        if (lesson.getSize() == 1) {
+                            TimeTable teacherTimeTable = null;
+                            
+                            foreach (TimeTable teacherTT in this.teacherTimeTables) {
+                                if (teacherTT.Equals(lesson.getTeacher())) {
+                                    teacherTimeTable = teacherTT;
+                                    break;
+                                }
+                            }
+
+                            TimeTable groupTimeTable = null;
+
+                            foreach (TimeTable groupTT in this.groupTimeTables)
+                            {
+                                if (groupTT.Equals(lesson.getGroup()))
+                                {
+                                    groupTimeTable = groupTT;
+                                    break;
+                                }
+                            }
+
+                            teacherTimeTable.addLesson(lesson, slot.day, slot.hour);
+                            groupTimeTable.addLesson(lesson, slot.day, slot.hour);
+
+                        }
+                    }
+
+                }
+            }
+
+            lessons = getListOfLessonToInsert();
+            this.generateSchoolTimeTable();
+
+            this.printTimeTable();
+            
+        }
+
+        public List<Lesson> getListOfLessonToInsert() {
+            List<Lesson> lessons_tmp = new List<Lesson>();
+            lessons_tmp.AddRange(this.lessons);
+
+            List<Lesson> lessonToRemove = this.getListOfLessonsInTimeTables();
+            //Console.WriteLine("--------------------");
+            foreach (Lesson l in lessonToRemove) {
+                foreach (Lesson ll in lessons_tmp) {
+            //        Console.Write(ll.ToString()  + " <-> " +l.ToString());
+                    if (l.Equals(ll) && ll.getSize() == 1)
+                    {
+                            lessons_tmp.Remove(ll);
+            //            Console.Write(" X");
+                        break;
+                    }
+            //        Console.WriteLine("");
+                }
+            //    Console.WriteLine("");
+            }
+            //Console.WriteLine("---------------------");
+            return lessons_tmp;
+        }
+
+        private List<Lesson> getListOfLessonsInTimeTables()
+        {
+            List<Lesson> lessons_tmp = new List<Lesson>();
+
+            foreach (TimeTable tt in this.groupTimeTables) {
+                for (int d = 0; d < ConstVariable.NUMBER_OF_DAYS; d++){
+                    for (int h = 0; h < ConstVariable.NUMBER_OF_SLOTS_IN_DAY; h++){
+                        lessons_tmp.AddRange(tt.getLesson(d,h));
+                    }
+                }
+            }
+
+            return lessons_tmp;
+        }
+
+        public List<TimeSlot> getTheSameTimeSlotInTheSameLesson(TimeTable tt1, TimeTable tt2) {
+            List<TimeSlot> slots = new List<TimeSlot>();
+
+            for (int d = 0; d < ConstVariable.NUMBER_OF_DAYS; d++) {
+                for (int h = 0; h < ConstVariable.NUMBER_OF_SLOTS_IN_DAY; h++)
+                {
+
+                    if ((tt1.getLesson(d, h).Count > 0) && (tt2.getLesson(d, h).Count > 0))
+                    {
+                        Console.Write("# : " + tt1.getLesson(d, h)[0].ToString() + "<->" + tt2.getLesson(d, h)[0].ToString());
+                        if (tt1.getLesson(d, h)[0].getSubject().Equals(tt2.getLesson(d, h)[0].getSubject()))
+                        {
+                            Console.WriteLine(" < OK");
+                            slots.Add(new TimeSlot(d, h));
+                        }
+                        else {
+                            Console.WriteLine("");
+                        }
+                    }
+                }
+            }
+            
+            return slots;
         }
 
     }

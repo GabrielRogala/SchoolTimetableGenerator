@@ -43,7 +43,7 @@ namespace STG_genetic_algorithm.Model
 
         public Boolean Equals(Lesson lesson)
         {
-            return this.subject.Equals(lesson.subject) && this.group.Equals(lesson.group) && this.teacher.Equals(lesson.teacher);
+            return this.subject.Equals(lesson.subject) && this.group.Equals(lesson.group) && this.teacher.Equals(lesson.teacher) && this.amount.Equals(lesson.amount) && this.size.Equals(lesson.size);
         }
 
         public Subject getSubject()

@@ -60,6 +60,7 @@
     <Compile Include="Model\SubjectTests.cs" />
     <Compile Include="Model\TeacherTests.cs" />
     <Compile Include="Model\TimeTableTests.cs" />
+    <Compile Include="Model\PopulationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

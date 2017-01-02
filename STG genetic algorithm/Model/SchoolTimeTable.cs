@@ -17,6 +17,7 @@ namespace STG_genetic_algorithm.Model
         public List<Lesson> lessons;
         private int aountOfLessons;
         private static Random rand = new Random();
+        private int value;
 
         public SchoolTimeTable()
         {
@@ -24,6 +25,8 @@ namespace STG_genetic_algorithm.Model
             teacherTimeTables = new List<TimeTable>();
             lessons = new List<Lesson>();
             aountOfLessons = 0;
+            id = 0;
+            value = 0;
         }
 
         public SchoolTimeTable(List<Lesson> lessons, List<Teacher> teachers, List<Group> groups) : this()
@@ -32,6 +35,57 @@ namespace STG_genetic_algorithm.Model
             generateTeacherTimeTables(teachers);
             generateGroupTimeTables(groups);
             aountOfLessons = lessons.Count();
+        }
+
+        public SchoolTimeTable(List<Lesson> lessons, List<Teacher> teachers, List<Group> groups, SchoolTimeTable stt) : this(lessons,teachers,groups) {
+            for (int i =0; i < stt.groupTimeTables.Count; ++i){
+
+                TimeTable gtt = stt.groupTimeTables[i];
+
+                for (int d = 0; d < ConstVariable.NUMBER_OF_DAYS; ++d) {
+                    for (int h = 0; h < ConstVariable.NUMBER_OF_SLOTS_IN_DAY; ++h)
+                    {
+                        
+
+                        if (gtt.getLesson(d, h).Count > 0)
+                        {
+                            Lesson tmp = gtt.getLesson(d, h)[0];
+                            int index = this.lessons.IndexOf(tmp);
+                            Lesson tmpT = this.lessons[index];
+                            this.groupTimeTables[i].addLesson(tmpT, d, h);
+                            this.teacherTimeTables[getIndexOfTeacher(tmpT.getTeacher())].addLesson(tmpT, d, h);
+
+                        } 
+
+                    }
+                }
+
+            }
+        }
+
+        public int getIndexOfTeacher(Teacher teacher) {
+            int index = 0;
+            
+            foreach (TimeTable tt in teacherTimeTables) {
+                if (tt.teacher.Equals(teacher)) {
+                    break;
+                }
+                index++;
+            }
+
+            return index;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public int getValue() {
+            return value;
         }
 
         public void addLessons(List<Lesson> lessons) {
@@ -299,7 +353,7 @@ namespace STG_genetic_algorithm.Model
                         // ustawiam nowa lekcje
                         lesson.getGroup().getTimeTable().addLesson(lesson, freeSlots[newSlotIndex].day, freeSlots[newSlotIndex].hour);
                         lesson.getTeacher().getTimeTable().addLesson(lesson, freeSlots[newSlotIndex].day, freeSlots[newSlotIndex].hour);
-                        Console.WriteLine("find free slots");
+                        //Console.WriteLine("find free slots");
                         break;
                     }
 
@@ -308,7 +362,7 @@ namespace STG_genetic_algorithm.Model
                 }
                 if (firstSlots.Count == 0)
                 {
-                    Console.WriteLine("NOT FOUND");
+                    //Console.WriteLine("NOT FOUND");
 
                     // szukanie wgłąb
                     firstSlots = firstTT.getFreeTimeSlot();
@@ -367,7 +421,7 @@ namespace STG_genetic_algorithm.Model
                 freeSlotsToLesson.Sort(new Comparison<FreeSlotsToLesson>(BFSComparator));
 
                 foreach (FreeSlotsToLesson fstl in freeSlotsToLesson) {
-                    Console.WriteLine(fstl.ToString());
+                   // Console.WriteLine(fstl.ToString());
                 }
 
                 //-------------------------------------------------
@@ -403,7 +457,7 @@ namespace STG_genetic_algorithm.Model
                                 fstl.lesson.getGroup().getTimeTable().addLesson(fstl.lesson, bestSlot.day, bestSlot.hour+i);
                                 fstl.lesson.getTeacher().getTimeTable().addLesson(fstl.lesson, bestSlot.day, bestSlot.hour+i);
                             } else {
-                                Console.WriteLine("ERROR!!!!!!!!!!!!!!!!");
+                                //Console.WriteLine("ERROR!!!!!!!!!!!!!!!!");
                             }
                         }
                         
@@ -425,7 +479,7 @@ namespace STG_genetic_algorithm.Model
                     }
                     else {
                         //if (!removeLessonsAndFindNewPosition(fstl.lesson))
-                            Console.WriteLine("ERROR! \t" + fstl.lesson.ToString() + "have not free slots");
+                            //Console.WriteLine("ERROR! \t" + fstl.lesson.ToString() + "have not free slots");
                         
                     }
                 }
@@ -587,6 +641,7 @@ namespace STG_genetic_algorithm.Model
             {
                 value += tt.fitness();
             }
+            this.value = value;
             return value;
         }
 
@@ -631,8 +686,8 @@ namespace STG_genetic_algorithm.Model
                 
                 if (tt2 != null)
                 {
-                    tt1.printTimeTable();
-                    tt2.printTimeTable();
+                    //tt1.printTimeTable();
+                    //tt2.printTimeTable();
 
                     List<TimeSlot> slots = getTheSameTimeSlotInTheSameLesson(tt1, tt2);
 
@@ -672,7 +727,7 @@ namespace STG_genetic_algorithm.Model
             lessons = getListOfLessonToInsert();
             this.generateSchoolTimeTable();
 
-            this.printTimeTable();
+            //this.printTimeTable();
             
         }
 
@@ -723,14 +778,14 @@ namespace STG_genetic_algorithm.Model
 
                     if ((tt1.getLesson(d, h).Count > 0) && (tt2.getLesson(d, h).Count > 0))
                     {
-                        Console.Write("# : " + tt1.getLesson(d, h)[0].ToString() + "<->" + tt2.getLesson(d, h)[0].ToString());
+                        //Console.Write("# : " + tt1.getLesson(d, h)[0].ToString() + "<->" + tt2.getLesson(d, h)[0].ToString());
                         if (tt1.getLesson(d, h)[0].getSubject().Equals(tt2.getLesson(d, h)[0].getSubject()))
                         {
-                            Console.WriteLine(" < OK");
+                            //Console.WriteLine(" < OK");
                             slots.Add(new TimeSlot(d, h));
                         }
                         else {
-                            Console.WriteLine("");
+                            //Console.WriteLine("");
                         }
                     }
                 }

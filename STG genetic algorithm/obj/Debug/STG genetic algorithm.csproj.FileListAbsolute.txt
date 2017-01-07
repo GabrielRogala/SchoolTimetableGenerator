@@ -3,8 +3,3 @@ C:\Users\Gabriel Rogala\Dropbox\cpp\STG genetic algorithm\STG genetic algorithm\
 C:\Users\Gabriel Rogala\Dropbox\cpp\STG genetic algorithm\STG genetic algorithm\obj\Debug\STG genetic algorithm.csprojResolveAssemblyReference.cache
 C:\Users\Gabriel Rogala\Dropbox\cpp\STG genetic algorithm\STG genetic algorithm\obj\Debug\STG genetic algorithm.dll
 C:\Users\Gabriel Rogala\Dropbox\cpp\STG genetic algorithm\STG genetic algorithm\obj\Debug\STG genetic algorithm.pdb
-C:\Users\Gabriel Rogala\Dropbox\INŻ\SchoolTimetableGenerator\STG genetic algorithm\bin\Debug\STG genetic algorithm.dll
-C:\Users\Gabriel Rogala\Dropbox\INŻ\SchoolTimetableGenerator\STG genetic algorithm\bin\Debug\STG genetic algorithm.pdb
-C:\Users\Gabriel Rogala\Dropbox\INŻ\SchoolTimetableGenerator\STG genetic algorithm\obj\Debug\STG genetic algorithm.csprojResolveAssemblyReference.cache
-C:\Users\Gabriel Rogala\Dropbox\INŻ\SchoolTimetableGenerator\STG genetic algorithm\obj\Debug\STG genetic algorithm.dll
-C:\Users\Gabriel Rogala\Dropbox\INŻ\SchoolTimetableGenerator\STG genetic algorithm\obj\Debug\STG genetic algorithm.pdb

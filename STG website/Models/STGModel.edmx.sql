@@ -129,7 +129,7 @@ CREATE TABLE [dbo].[Teachers] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [Lastname] nvarchar(max)  NOT NULL,
-    [AspNetUsersId] nvarchar(128)  NOT NULL
+    [AspNetUsersId] nvarchar(128)  NULL
 );
 GO
 

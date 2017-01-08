@@ -108,9 +108,9 @@ namespace STG_genetic_algorithm_Tests.Model
             }
 
             Population population = new Population();
-            population.generatePopulation(100,lessons,teachers,groups);
+            population.generatePopulation(10,lessons,teachers,groups);
             //population.generateNewPopulation();
-            population.start(500);
+            population.start(5);
 
             SchoolTimeTable stt = population.getBestSchoolTimeTable();
             stt.printTimeTable();

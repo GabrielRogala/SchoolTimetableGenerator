@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 11/08/2016 21:40:20
+-- Date Created: 01/08/2017 11:07:14
 -- Generated from EDMX file: C:\Users\Gabriel Rogala\Dropbox\INŻ\SchoolTimetableGenerator\STG website\Models\STGModel.edmx
 -- --------------------------------------------------
 
@@ -17,25 +17,85 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[AspNetUserRoles] DROP CONSTRAINT [FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId];
+GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[AspNetUserClaims] DROP CONSTRAINT [FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId];
 GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[AspNetUserLogins] DROP CONSTRAINT [FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId];
 GO
-IF OBJECT_ID(N'[dbo].[FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[AspNetUserRoles] DROP CONSTRAINT [FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId];
+IF OBJECT_ID(N'[dbo].[FK_AspNetUsersSchool]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Schools] DROP CONSTRAINT [FK_AspNetUsersSchool];
 GO
-IF OBJECT_ID(N'[dbo].[FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[AspNetUserRoles] DROP CONSTRAINT [FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId];
+IF OBJECT_ID(N'[dbo].[FK_AspNetUsersTeacher]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Teachers] DROP CONSTRAINT [FK_AspNetUsersTeacher];
+GO
+IF OBJECT_ID(N'[dbo].[FK_SubjectsLessons]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Lessons] DROP CONSTRAINT [FK_SubjectsLessons];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TeachersLessons]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Lessons] DROP CONSTRAINT [FK_TeachersLessons];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TeachersTeachersSchools]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TeachersSchoolsSet] DROP CONSTRAINT [FK_TeachersTeachersSchools];
+GO
+IF OBJECT_ID(N'[dbo].[FK_SchoolsTeachersSchools]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TeachersSchoolsSet] DROP CONSTRAINT [FK_SchoolsTeachersSchools];
+GO
+IF OBJECT_ID(N'[dbo].[FK_SchoolsGroups]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Groups] DROP CONSTRAINT [FK_SchoolsGroups];
+GO
+IF OBJECT_ID(N'[dbo].[FK_SchoolsSubjects]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Subjects] DROP CONSTRAINT [FK_SchoolsSubjects];
+GO
+IF OBJECT_ID(N'[dbo].[FK_SchoolsLessons]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Lessons] DROP CONSTRAINT [FK_SchoolsLessons];
+GO
+IF OBJECT_ID(N'[dbo].[FK_SchoolsRooms]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Rooms] DROP CONSTRAINT [FK_SchoolsRooms];
+GO
+IF OBJECT_ID(N'[dbo].[FK_SchoolsRoomType]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[RoomTypes] DROP CONSTRAINT [FK_SchoolsRoomType];
+GO
+IF OBJECT_ID(N'[dbo].[FK_RoomTypeRooms]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Rooms] DROP CONSTRAINT [FK_RoomTypeRooms];
+GO
+IF OBJECT_ID(N'[dbo].[FK_RoomTypeLessons]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Lessons] DROP CONSTRAINT [FK_RoomTypeLessons];
+GO
+IF OBJECT_ID(N'[dbo].[FK_GroupsSubGroups]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[SubGroups] DROP CONSTRAINT [FK_GroupsSubGroups];
+GO
+IF OBJECT_ID(N'[dbo].[FK_SchoolsSubGroups]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[SubGroups] DROP CONSTRAINT [FK_SchoolsSubGroups];
+GO
+IF OBJECT_ID(N'[dbo].[FK_SubGroupsLessons]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Lessons] DROP CONSTRAINT [FK_SubGroupsLessons];
+GO
+IF OBJECT_ID(N'[dbo].[FK_SchoolsTimetable]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Timetable] DROP CONSTRAINT [FK_SchoolsTimetable];
+GO
+IF OBJECT_ID(N'[dbo].[FK_RoomsTimetable]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Timetable] DROP CONSTRAINT [FK_RoomsTimetable];
+GO
+IF OBJECT_ID(N'[dbo].[FK_GroupsTimetable]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Timetable] DROP CONSTRAINT [FK_GroupsTimetable];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TeachersTimetable]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Timetable] DROP CONSTRAINT [FK_TeachersTimetable];
+GO
+IF OBJECT_ID(N'[dbo].[FK_LessonsTimetable]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Timetable] DROP CONSTRAINT [FK_LessonsTimetable];
 GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[__MigrationHistory]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[__MigrationHistory];
+IF OBJECT_ID(N'[dbo].[C__MigrationHistory]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[C__MigrationHistory];
 GO
 IF OBJECT_ID(N'[dbo].[AspNetRoles]', 'U') IS NOT NULL
     DROP TABLE [dbo].[AspNetRoles];
@@ -51,6 +111,36 @@ IF OBJECT_ID(N'[dbo].[AspNetUserRoles]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[AspNetUsers]', 'U') IS NOT NULL
     DROP TABLE [dbo].[AspNetUsers];
+GO
+IF OBJECT_ID(N'[dbo].[Schools]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Schools];
+GO
+IF OBJECT_ID(N'[dbo].[Teachers]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Teachers];
+GO
+IF OBJECT_ID(N'[dbo].[Subjects]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Subjects];
+GO
+IF OBJECT_ID(N'[dbo].[Groups]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Groups];
+GO
+IF OBJECT_ID(N'[dbo].[Lessons]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Lessons];
+GO
+IF OBJECT_ID(N'[dbo].[TeachersSchoolsSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TeachersSchoolsSet];
+GO
+IF OBJECT_ID(N'[dbo].[Rooms]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Rooms];
+GO
+IF OBJECT_ID(N'[dbo].[RoomTypes]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[RoomTypes];
+GO
+IF OBJECT_ID(N'[dbo].[SubGroups]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[SubGroups];
+GO
+IF OBJECT_ID(N'[dbo].[Timetable]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Timetable];
 GO
 
 -- --------------------------------------------------

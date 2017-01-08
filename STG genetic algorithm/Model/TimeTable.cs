@@ -11,6 +11,7 @@ namespace STG_genetic_algorithm.Model
     {
         public Group group;
         public Teacher teacher;
+        public Room room;
         private List<Day> days;
 
         public TimeTable()
@@ -26,6 +27,18 @@ namespace STG_genetic_algorithm.Model
         {
             gr.setTimeTable(this);
             this.group = gr;
+        }
+
+        public TimeTable(Teacher te) : this()
+        {
+            te.setTimeTable(this);
+            this.teacher = te;
+        }
+
+        public TimeTable(Room ro) : this()
+        {
+            ro.setTimeTable(this);
+            this.room = ro;
         }
 
         public bool Equals(TimeTable obj)
@@ -63,12 +76,6 @@ namespace STG_genetic_algorithm.Model
             }
         }
 
-        public TimeTable(Teacher te) : this()
-        {
-            te.setTimeTable(this);
-            this.teacher = te;
-        }
-
         public List<Day> getDays()
         {
             return days;
@@ -99,6 +106,10 @@ namespace STG_genetic_algorithm.Model
             {
                 Console.WriteLine("============== " + group.ToString() + " ===============");
             }
+            else if (room != null)
+            {
+                Console.WriteLine("============== " + room.ToString() + " ===============");
+            }
             else
             {
                 Console.WriteLine("======================================================");
@@ -123,7 +134,7 @@ namespace STG_genetic_algorithm.Model
                     }
                     else
                     {
-                        Console.Write(" -----/-----/-------------\t");
+                        Console.Write(" --------/----/-----------------\t");
                     }
                     Console.Write("|");
 
@@ -142,6 +153,10 @@ namespace STG_genetic_algorithm.Model
             else if (group != null)
             {
                 Console.WriteLine("============== " + group.ToString() + " ===============");
+            }
+            else if(room != null)
+            {
+                Console.WriteLine("============== " + room.ToString() + " ===============");
             }
             else
             {

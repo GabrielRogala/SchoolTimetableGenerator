@@ -27,8 +27,9 @@ namespace STG_genetic_algorithm_Tests.Model
             List<Teacher> teachers = new List<Teacher>();
             List<Group> groups = new List<Group>();
             List<Subject> subjects = new List<Subject>();
+            List<Room> rooms = new List<Room>();
 
-           // Console.WriteLine("create 6 teachers");
+            // Console.WriteLine("create 6 teachers");
             for (int j = 0; j < 7; j++)
             {
                 teachers.Add(new Teacher(j, "t" + j));
@@ -36,22 +37,31 @@ namespace STG_genetic_algorithm_Tests.Model
             //Console.WriteLine("create 6 groups");
             for (int j = 0; j < 6; j++)
             {
-                groups.Add(new Group(j, "g" + j));
+                groups.Add(new Group(j, "g" + j,25+j));
             }
+            int nr = 0;
+            rooms.Add(new Room(nr, "nr" + nr++, 25, "A"));
+            rooms.Add(new Room(nr, "nr" + nr++, 40, "A"));
+            rooms.Add(new Room(nr, "nr" + nr++, 40, "A"));
+            rooms.Add(new Room(nr, "nr" + nr++, 40, "A"));
+            rooms.Add(new Room(nr, "nr" + nr++, 40, "B"));
+            rooms.Add(new Room(nr, "nr" + nr++, 40, "B"));
+            rooms.Add(new Room(nr, "nr" + nr++, 40, "C"));
+
             //Console.WriteLine("create 10 subject");
             int i = 0;
-            subjects.Add(new Subject(i++, "pol", SubjectType.HUM));
-            subjects.Add(new Subject(i++, "ang", SubjectType.JEZ));
-            subjects.Add(new Subject(i++, "mat", SubjectType.SCI));
-            subjects.Add(new Subject(i++, "his", SubjectType.HUM));
-            subjects.Add(new Subject(i++, "wos", SubjectType.HUM));
-            subjects.Add(new Subject(i++, "fiz", SubjectType.SCI));
-            subjects.Add(new Subject(i++, "bio", SubjectType.SCI));
-            subjects.Add(new Subject(i++, "geo", SubjectType.SCI));
-            subjects.Add(new Subject(i++, "w-f", SubjectType.SPO));
-            subjects.Add(new Subject(i++, "rel", SubjectType.INN));
-            subjects.Add(new Subject(i++, "inf", SubjectType.SPE));
-            subjects.Add(new Subject(i++, "PRO", SubjectType.SPE));
+            subjects.Add(new Subject(i++, "pol", SubjectType.HUM,"A"));
+            subjects.Add(new Subject(i++, "ang", SubjectType.JEZ,"A"));
+            subjects.Add(new Subject(i++, "mat", SubjectType.SCI,"A"));
+            subjects.Add(new Subject(i++, "his", SubjectType.HUM,"A"));
+            subjects.Add(new Subject(i++, "wos", SubjectType.HUM,"A"));
+            subjects.Add(new Subject(i++, "fiz", SubjectType.SCI,"A"));
+            subjects.Add(new Subject(i++, "bio", SubjectType.SCI,"A"));
+            subjects.Add(new Subject(i++, "geo", SubjectType.SCI,"A"));
+            subjects.Add(new Subject(i++, "w-f", SubjectType.SPO,"C"));
+            subjects.Add(new Subject(i++, "rel", SubjectType.INN,"A"));
+            subjects.Add(new Subject(i++, "inf", SubjectType.SPE,"B"));
+            subjects.Add(new Subject(i++, "PRO", SubjectType.SPE,"B"));
 
             Console.WriteLine("create list of lesson");
             foreach (Group g in groups)
@@ -118,7 +128,7 @@ namespace STG_genetic_algorithm_Tests.Model
                 
             }
 
-            SchoolTimeTable stt = new SchoolTimeTable(lessons, teachers, groups);
+            SchoolTimeTable stt = new SchoolTimeTable(lessons, teachers, groups,rooms);
 
             stt.generateSchoolTimeTable();
             stt.printTimeTable();

@@ -11,11 +11,19 @@ namespace STG_genetic_algorithm.Model
         public String name;
         public int id;
         public TimeTable timeTable;
+        public int amount;
 
         public Group(int id, String name)
         {
             this.id = id;
             this.name = name;
+        }
+
+        public Group(int id, String name, int amount)
+        {
+            this.id = id;
+            this.name = name;
+            this.amount = amount;
         }
 
         public void setTimeTable(TimeTable timeTable)
@@ -30,7 +38,7 @@ namespace STG_genetic_algorithm.Model
 
         public string ToString()
         {
-            return id + ":" + name;
+            return id + ":" + name+"("+amount+")";
         }
 
         public override bool Equals(object obj)

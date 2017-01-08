@@ -43,10 +43,12 @@
     <Compile Include="Config\ConstVariable.cs" />
     <Compile Include="Config\SubjectType.cs" />
     <Compile Include="Model\Day.cs" />
+    <Compile Include="Model\FreeSlotsInRoomToLesson.cs" />
     <Compile Include="Model\FreeSlotsToLesson.cs" />
     <Compile Include="Model\Group.cs" />
     <Compile Include="Model\Lesson.cs" />
     <Compile Include="Model\Population.cs" />
+    <Compile Include="Model\Room.cs" />
     <Compile Include="Model\SchoolTimeTable.cs" />
     <Compile Include="Model\Slot.cs" />
     <Compile Include="Model\Subject.cs" />

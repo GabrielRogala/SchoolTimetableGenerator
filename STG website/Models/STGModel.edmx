@@ -197,7 +197,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Lastname" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="AspNetUsersId" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="AspNetUsersId" Type="nvarchar" Nullable="true" MaxLength="128" />
   </EntityType>
   <EntityType Name="Subjects">
     <Key>
@@ -334,7 +334,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="AspNetUsersTeacher">
-    <End Role="AspNetUsers" Type="Model.Store.AspNetUsers" Multiplicity="1" />
+    <End Role="AspNetUsers" Type="Model.Store.AspNetUsers" Multiplicity="0..1" />
     <End Role="Teacher" Type="Model.Store.Teachers" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="AspNetUsers">
@@ -841,13 +841,13 @@
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="Lastname" Type="String" Nullable="false" />
           <NavigationProperty Name="AspNetUsers" Relationship="Model.AspNetUsersTeacher" FromRole="Teacher" ToRole="AspNetUsers" />
-          <Property Name="AspNetUsersId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AspNetUsersId" Type="String" Nullable="true" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Lessons" Relationship="Model.TeachersLessons" FromRole="Teachers" ToRole="Lessons" />
           <NavigationProperty Name="TeachersSchools" Relationship="Model.TeachersTeachersSchools" FromRole="Teachers" ToRole="TeachersSchools" />
           <NavigationProperty Name="Timetable" Relationship="Model.TeachersTimetable" FromRole="Teachers" ToRole="Timetable" />
         </EntityType>
         <Association Name="AspNetUsersTeacher">
-          <End Type="Model.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+          <End Type="Model.AspNetUsers" Role="AspNetUsers" Multiplicity="0..1" />
           <End Type="Model.Teachers" Role="Teacher" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AspNetUsers">

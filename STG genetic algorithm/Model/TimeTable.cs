@@ -129,12 +129,16 @@ namespace STG_genetic_algorithm.Model
                     if (d.getSlots()[i].getLessons().Count > 0)
                     {
                         foreach (Lesson lesson in d.getSlots()[i].getLessons()) {
-                            Console.Write(" " + lesson.ToString() + "\t");
+                            Console.Write("        " + lesson.ToString() + "\t");
                         }
                     }
                     else
                     {
-                        Console.Write(" --------/----/-----------------\t");
+                        if (d.getSlots()[i].isBlocked()) {
+                            Console.Write(" #############BLOCKED###########\t");
+                        } else {
+                            Console.Write(" --------/----/-----------------\t");
+                        }
                     }
                     Console.Write("|");
 
@@ -173,7 +177,14 @@ namespace STG_genetic_algorithm.Model
                     }
                     else
                     {
-                        Console.Write(" ");
+                        if (d.getSlots()[i].isBlocked())
+                        {
+                            Console.Write("X");
+                        }
+                        else
+                        {
+                            Console.Write(" ");
+                        }
                     }
                     Console.Write("|");
 
@@ -199,7 +210,7 @@ namespace STG_genetic_algorithm.Model
                     bool result = true;
 
                     for (int i=0;i<size;++i) {
-                        result = result && isEmpty(d, h + i);
+                        result = result && isEmpty(d, h + i) && !days[d].getSlots()[h+i].isBlocked();
                     }
 
                     if (result)
@@ -271,7 +282,7 @@ namespace STG_genetic_algorithm.Model
                 int lastIndex = -1;
                 for (int i = 0; i < d.getSlots().Count; i++)
                 {
-                    if (!d.getSlots()[i].isEmpty())
+                    if (!d.getSlots()[i].isEmpty() || d.getSlots()[i].isBlocked())
                     {
                         value += (int)Math.Pow((i - lastIndex - 1), 3);
                         lastIndex = i;

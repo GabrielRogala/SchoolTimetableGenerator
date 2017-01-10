@@ -13,7 +13,7 @@ namespace STG_genetic_algorithm.Model
 
         private int id;
         private List<TimeTable> groupTimeTables;
-        private List<TimeTable> teacherTimeTables;
+        public List<TimeTable> teacherTimeTables;
         private List<TimeTable> roomTimeTables;
         public List<Lesson> lessons;
         private int aountOfLessons;

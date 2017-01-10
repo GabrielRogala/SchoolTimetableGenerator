@@ -34,6 +34,7 @@ namespace STG_genetic_algorithm_Tests.Model
             {
                 teachers.Add(new Teacher(j, "t" + j));
             }
+
             //Console.WriteLine("create 6 groups");
             for (int j = 0; j < 6; j++)
             {
@@ -113,10 +114,10 @@ namespace STG_genetic_algorithm_Tests.Model
                 lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
                 lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
                 //----------rel----------
-                tI = 5; sI = 9; amount = 3;
+                tI = 5; sI = 9; amount = 2;
                 lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
                 lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
-                lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
+                //lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
                 //----------inf----------
                 tI = 4; sI = 10; amount = 2;
                 lessons.Add(new Lesson(teachers[tI], g, subjects[sI], amount));
@@ -129,6 +130,12 @@ namespace STG_genetic_algorithm_Tests.Model
             }
 
             SchoolTimeTable stt = new SchoolTimeTable(lessons, teachers, groups,rooms);
+
+            stt.teacherTimeTables[5].getDays()[0].getSlots()[0].lockSlot();
+            stt.teacherTimeTables[5].getDays()[1].getSlots()[1].lockSlot();
+            stt.teacherTimeTables[5].getDays()[2].getSlots()[2].lockSlot();
+            stt.teacherTimeTables[5].getDays()[3].getSlots()[3].lockSlot();
+            stt.teacherTimeTables[5].getDays()[4].getSlots()[4].lockSlot();
 
             stt.generateSchoolTimeTable();
             stt.printTimeTable();

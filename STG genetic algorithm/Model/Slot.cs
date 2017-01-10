@@ -10,6 +10,7 @@ namespace STG_genetic_algorithm.Model
     {
         private int id;
         private List<Lesson> lessons;
+        private bool blocked;
 
         public bool isEmpty()
         {
@@ -19,6 +20,7 @@ namespace STG_genetic_algorithm.Model
         public Slot(int id)
         {
             this.id = id;
+            blocked = false;
             lessons = new List<Lesson>();
         }
 
@@ -40,6 +42,18 @@ namespace STG_genetic_algorithm.Model
         public List<Lesson> getLessons()
         {
             return lessons;
+        }
+
+        public void lockSlot() {
+            blocked = true;
+        }
+
+        public void unlockSlot() {
+            blocked = false;
+        }
+
+        public bool isBlocked() {
+            return blocked;
         }
     }
 }

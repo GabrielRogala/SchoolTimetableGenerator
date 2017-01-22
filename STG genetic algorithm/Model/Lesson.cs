@@ -14,6 +14,7 @@ namespace STG_genetic_algorithm.Model
         private int amount;
         private int size;
         private List<TimeSlot> timeSlots;
+        private Room room;
 
         public Lesson(Teacher t, Group g, Subject s)
         {
@@ -23,6 +24,7 @@ namespace STG_genetic_algorithm.Model
             amount = 1;
             size = 1;
             timeSlots = new List<TimeSlot>();
+            room = null;
         }
 
         public Lesson(Teacher t, Group g, Subject s, int amount) :this(t,g,s)
@@ -36,9 +38,21 @@ namespace STG_genetic_algorithm.Model
             this.size = size;
         }
 
+        public void setRoom(Room room) {
+            this.room = room;
+        }
+
+        public Room getRoom() {
+            return room;
+        }
+
         public string ToString()
         {
-            return group.ToString() + "/" + teacher.ToString() + "/" + subject.ToString()+ "["+size+":"+amount+"]";
+            String roomNo = "";
+            if (room != null) {
+                roomNo = room.name;
+            }
+            return group.ToString() + "/" + teacher.ToString() + "/" + subject.ToString()+ "["+size+":"+amount+"]"+ roomNo;
         }
 
         public Boolean Equals(Lesson lesson)

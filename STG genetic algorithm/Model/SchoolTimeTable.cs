@@ -331,14 +331,70 @@ namespace STG_genetic_algorithm.Model
         }
 
         public Boolean removeLessonsAndFindNewPosition(Lesson lesson) {
+            bool result = true;
+
+            TimeTable groupTT = lesson.getGroup().getTimeTable();                               //plan zajęć dla grupy szukanej lekcji
+            TimeTable teacherTT = lesson.getTeacher().getTimeTable();                           //plan zajec dla nauczyciela szukanej lekcji
+            List<TimeSlot> groupSlots = groupTT.getFreeTimeSlot(lesson.getSize());              //wolne sloty grupy
+            List<TimeSlot> teacherSlots = teacherTT.getFreeTimeSlot(lesson.getSize());          //wolne sloty nauczyciela
+            List<FreeSlotsToLesson> freeSlotsToLesson = new List<FreeSlotsToLesson>();
+            List<TimeSlot> slotsToChange = new List<TimeSlot>();
+            TimeSlot bestSlot = null;
+            Lesson lessonToMove = null;
+
+            for (int d = 0; d<ConstVariable.NUMBER_OF_DAYS;d++) {
+                for (int h = 0; h < ConstVariable.NUMBER_OF_SLOTS_IN_DAY; h++){
+                    ////pobranie wolnych sal i grupy/nauczyciela
+                    ////porównanie wolnych slotów nauczyciela, grupy i sal 
+                    ////dodanie do listy
+                    if (true) {
+                        slotsToChange.Add(new TimeSlot(d, h));
+                    }
+                }
+            }
+
+            bestSlot = slotsToChange[rand.Next(slotsToChange.Count-1)];                         //wylosowanie z listy najlepszego slotu
+
+            //wstawienie zmienianej lekcji
+            lessonToMove = groupTT.getLesson(bestSlot.day, bestSlot.hour)[0];
+            ////
+
+            //usuniecie zmienianej lekcji z poprzedniej pozycji
+            groupTT.removeLesson(lessonToMove, bestSlot.day, bestSlot.hour);
+            teacherTT.removeLesson(lessonToMove, bestSlot.day, bestSlot.hour);
+            
+            ////room
+
+            //wstawienie w wybrany slot lekcji do wstawienia
+            groupTT.addLesson(lesson, bestSlot.day, bestSlot.hour);
+            teacherTT.addLesson(lesson, bestSlot.day, bestSlot.hour);
+            ////room
+
+
+            return result;
+            
+            /*
             Boolean result = true;
             Boolean isGroupHaveMoreSlots = true;
-            
+            List<FreeSlotsToLesson> freeSlotsToLesson = new List<FreeSlotsToLesson>();
 
-            TimeTable groupTT = lesson.getGroup().getTimeTable();
-            TimeTable teacherTT = lesson.getTeacher().getTimeTable();
-            List<TimeSlot> groupSlots = groupTT.getFreeTimeSlot();
-            List<TimeSlot> teacherSlots = teacherTT.getFreeTimeSlot();
+            TimeTable groupTT = lesson.getGroup().getTimeTable();                               //plan zajęć dla grupy szukanej lekcji
+            TimeTable teacherTT = lesson.getTeacher().getTimeTable();                           //plan zajec dla nauczyciela szukanej lekcji
+            List<TimeSlot> groupSlots = groupTT.getFreeTimeSlot(lesson.getSize());              //wolne sloty grupy
+            List<TimeSlot> teacherSlots = teacherTT.getFreeTimeSlot(lesson.getSize());          //wolne sloty nauczyciela
+
+            List<FreeSlotsInRoomToLesson> freeSlotsInRoomToLesson = new List<FreeSlotsInRoomToLesson>();    //lista wolnych slotów sal pasujących do lekcji i grupy
+            foreach (TimeTable tt in roomTimeTables)
+            {
+                if (tt.room.type.Equals(lesson.getSubject().getRoomType()) && tt.room.amount >= lesson.getGroup().amount)
+                {
+                    freeSlotsInRoomToLesson.Add(new FreeSlotsInRoomToLesson(tt.getFreeTimeSlot(), tt.room));
+                }
+            }
+
+            List<TimeSlot> theSameSlots = getTheSameSlots(groupSlots, teacherSlots);                                       //generuje liste wolnych slotów dla grupt i nauczyciela i sprawdza wolne sale
+            freeSlotsToLesson.Add(new FreeSlotsToLesson(theSameSlots, lesson, freeSlotsInRoomToLesson));   //generuje lekcje wraz z listą wolnych slotów
+
 
             if (getTheSameSlots(groupSlots,teacherSlots).Count == 0) {
                 TimeTable firstTT = groupTT;
@@ -350,21 +406,20 @@ namespace STG_genetic_algorithm.Model
                     secondTT = groupTT;
                     isGroupHaveMoreSlots = false;
                 }
-                /*
-                first - plan który posiada mniej wolnych slotów
-                second - plan który posiada więcej wolnych slotow
-
-                w "second" szukamy lekcji mozliwych dozamiany w slotach  planu "first"
-                */
+                
+                //first - plan który posiada mniej wolnych slotów
+                //second - plan który posiada więcej wolnych slotow
+                //
+                //w "second" szukamy lekcji mozliwych dozamiany w slotach  planu "first"
+                
 
                 List<TimeSlot> firstSlots = firstTT.getFreeTimeSlot(lesson.getSize());
                 List<TimeSlot> secondSlots = secondTT.getFreeTimeSlot(lesson.getSize());
-                /**
-                 * do poprawienia
-                 * dopisac uwzglednianie wiekszych lekcji
-                 * zwalnianie slotow przy zamianie
-                 * nie zmieniac wiekszych slotow
-                 */
+                 // do poprawienia
+                 // dopisac uwzglednianie wiekszych lekcji
+                 // zwalnianie slotow przy zamianie
+                 // nie zmieniac wiekszych slotow
+                 
                 while (firstSlots.Count > 0) {
                     int slotsIndex = rand.Next(0, firstSlots.Count);
                     TimeSlot timeSlotToClear = firstSlots[slotsIndex];
@@ -423,6 +478,8 @@ namespace STG_genetic_algorithm.Model
             }
 
             return result;
+
+            */
         }
 
         public void findAndSetBestPositionToLessons(List<Lesson> positionedLessons)
@@ -432,7 +489,7 @@ namespace STG_genetic_algorithm.Model
             List<TimeSlot> freeSlots = new List<TimeSlot>();
             List<TimeSlot> groupSlots;
             List<TimeSlot> teacherSlots;
-            List<TimeSlot> roomSlots;
+            //List<TimeSlot> roomSlots;
             List<TimeSlot> theSameSlots;
             Group group;
             List<FreeSlotsToLesson> freeSlotsToLesson = new List<FreeSlotsToLesson>();
@@ -520,9 +577,11 @@ namespace STG_genetic_algorithm.Model
                             if (fstl.lesson.getGroup().getTimeTable().getDays()[bestSlot.day].getSlots()[bestSlot.hour+i].isEmpty())
                             {
                                 fstl.lesson.addTimeSlot(new TimeSlot(bestSlot.day, bestSlot.hour +i));
+                                fstl.lesson.setRoom(roomTimeTables[bestRoomId].room);
                                 fstl.lesson.getGroup().getTimeTable().addLesson(fstl.lesson, bestSlot.day, bestSlot.hour+i);
                                 fstl.lesson.getTeacher().getTimeTable().addLesson(fstl.lesson, bestSlot.day, bestSlot.hour+i);
                                 roomTimeTables[bestRoomId].addLesson(fstl.lesson, bestSlot.day, bestSlot.hour + i);
+
                                 //>>>>>>>>>>>>>>>>>>>>>>>>
                                 fstl.lesson.getGroup().getTimeTable().printTimeTable();
                                 fstl.lesson.getTeacher().getTimeTable().printTimeTable();
